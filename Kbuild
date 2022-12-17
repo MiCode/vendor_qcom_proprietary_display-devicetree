@@ -42,7 +42,10 @@ dtbo-$(CONFIG_ARCH_WAIPIO) += display/trustedvm-waipio-sde-display-mtp-overlay.d
 endif
 
 dtbo-$(CONFIG_ARCH_KHAJE) += display/khaje-sde.dtbo \
-		display/khaje-sde-display-idp-overlay.dtbo
+		display/khaje-sde-display-idp-overlay.dtbo \
+		display/khaje-sde-display-qrd-overlay.dtbo \
+		display/khaje-sde-display-qrd-hvdcp3p5-overlay.dtbo \
+		display/khaje-sde-display-idps-90hz-overlay.dtbo
 
 always-y    := $(dtb-y) $(dtbo-y)
 subdir-y    := $(dts-dirs)
