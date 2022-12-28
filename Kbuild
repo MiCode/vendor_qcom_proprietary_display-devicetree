@@ -52,7 +52,8 @@ dtbo-$(CONFIG_ARCH_KHAJE) += display/khaje-sde.dtbo \
 		display/khaje-sde-display-qrd-nowcd9375-overlay.dtbo
 
 dtbo-$(CONFIG_ARCH_MONACO) += display/monaco-sde.dtbo \
-		display/monaco-sde-display-idp-overlay.dtbo
+		display/monaco-sde-display-idp-overlay.dtbo \
+		display/monaco-sde-display-wdp-overlay.dtbo
 
 always-y    := $(dtb-y) $(dtbo-y)
 subdir-y    := $(dts-dirs)
