@@ -47,7 +47,8 @@ dtbo-$(CONFIG_ARCH_KHAJE) += display/khaje-sde.dtbo \
 		display/khaje-sde-display-qrd-hvdcp3p5-overlay.dtbo \
 		display/khaje-sde-display-idps-90hz-overlay.dtbo \
 		display/khaje-sde-display-atp-overlay.dtbo \
-		display/khaje-sde-display-idp-nopmi-overlay.dtbo \
+        display/khaje-sde-display-idp-nopmi-overlay.dtbo \
+        display/xun-sde-display-idp-nopmi-overlay.dtbo \
 		display/khaje-sde-display-qrd-nopmi-overlay.dtbo \
 		display/khaje-sde-display-qrd-nowcd9375-overlay.dtbo
 

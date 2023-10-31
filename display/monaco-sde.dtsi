@@ -2,6 +2,7 @@
 #include <dt-bindings/clock/qcom,dispcc-monaco.h>
 #include <dt-bindings/interconnect/qcom,monaco.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/clock/qcom,rpmcc.h>
 
 &soc {
 	smmu_sde_unsec: qcom,smmu_sde_unsec_cb {
@@ -252,10 +253,11 @@
 			<&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
 			<&dispcc DISP_CC_MDSS_PCLK0_CLK>,
 			<&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>,
-			<&dispcc DISP_CC_MDSS_ESC0_CLK>;
+			<&dispcc DISP_CC_MDSS_ESC0_CLK>,
+			<&rpmcc RPM_SMD_XO_CLK_SRC>;
 		clock-names = "byte_clk", "byte_clk_rcg", "byte_intf_clk",
 					"pixel_clk", "pixel_clk_rcg",
-					"esc_clk";
+					"esc_clk", "xo";
 
 		qcom,ctrl-supply-entries {
 			#address-cells = <1>;
@@ -342,6 +344,7 @@
 	qcom,dsi-pll-ssc-en;
 	qcom,dsi-pll-ssc-mode = "down-spread";
 	qcom,panel-allow-phy-poweroff;
+	qcom,phy-clamp-enable;
 	pll_codes_region = <&dsi_pll_codes_data>;
 	memory-region = <&dfps_data_memory>;
 };
