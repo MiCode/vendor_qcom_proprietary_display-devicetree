@@ -5,10 +5,12 @@
 		compatible = "qcom,sde-kms";
 		reg = <0x0ae00000 0x84000>,
 		      <0x0aeb0000 0x2008>,
-		      <0x0aeac000 0x800>;
+		      <0x0aeac000 0x800>,
+		      <0x400000 0x1000>;
 		reg-names = "mdp_phys",
 			"vbif_phys",
-			"regdma_phys";
+			"regdma_phys",
+			"ipcc_reg";
 
 		/* interrupt config */
 		interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
@@ -166,8 +168,8 @@
 		qcom,sde-has-dest-scaler;
 		qcom,sde-max-trusted-vm-displays = <1>;
 
-		qcom,sde-max-bw-low-kbps = <13600000>;
-		qcom,sde-max-bw-high-kbps = <18200000>;
+		qcom,sde-max-bw-low-kbps = <17300000>;
+		qcom,sde-max-bw-high-kbps = <25000000>;
 		qcom,sde-min-core-ib-kbps = <2500000>;
 		qcom,sde-min-llcc-ib-kbps = <0>;
 		qcom,sde-min-dram-ib-kbps = <800000>;
@@ -227,6 +229,9 @@
 		qcom,sde-qos-cpu-dma-latency = <300>;
 		qcom,sde-qos-cpu-irq-latency = <300>;
 
+		qcom,sde-ipcc-protocol-id = <0x2>;
+		qcom,sde-ipcc-client-dpu-phys-id = <0x19>;
+
 		/* offsets are relative to "mdp_phys + qcom,sde-off */
 		qcom,sde-reg-dma-off = <0 0x400>;
 		qcom,sde-reg-dma-id = <0 1>;
@@ -238,9 +243,9 @@
 		qcom,sde-secure-sid-mask = <0x0002801 0x0002c01>;
 
 		qcom,sde-reg-bus,vectors-KBps = <0 0>,
-				<0 74000>,
-				<0 5000000>,
-				<0 9700000>;
+				<0 57000>,
+				<0 590000>,
+				<0 1190000>;
 
 		qcom,sde-sspp-vig-blocks {
 			vcm@0 {

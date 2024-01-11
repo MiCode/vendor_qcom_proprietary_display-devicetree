@@ -1,0 +1,61 @@
+mi,mdss-dsi-dimmingon-command = [15 00 00 00 00 00 02 53 28];
+mi,mdss-dsi-dimmingon-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-dimmingoff-command = [15 00 00 00 00 00 02 53 20];
+mi,mdss-dsi-dimmingoff-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-flat-mode-on-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 04 B0 02 79 92
+	39 00 00 40 00 00 02 92 25
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-flat-mode-on-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-flat-mode-off-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 04 B0 02 79 92
+	39 00 00 40 00 00 02 92 05
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-flat-mode-off-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-hbm-on-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 03 51 08 00
+	39 00 00 40 00 00 02 F7 0F
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-hbm-on-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-hbm-off-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 03 51 07 FF
+	39 00 00 40 00 00 02 F7 0F
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-hbm-off-command-update = <0x51 1 2>;
+mi,mdss-dsi-hbm-off-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-doze-hbm-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 02 60 00
+	39 00 00 40 00 00 02 53 24
+	39 00 00 40 00 00 03 51 07 FF
+	39 00 00 40 00 00 02 F7 0F
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-doze-hbm-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-doze-lbm-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 02 60 00
+	39 00 00 40 00 00 02 53 24
+	39 00 00 40 00 00 03 51 00 AA
+	39 00 00 40 00 00 02 F7 0F
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-doze-lbm-command-state = "dsi_lp_mode";
+
+qcom,panel-roi-alignment = <540 40 540 40 540 40>;
+qcom,partial-update-enabled = "single_roi";

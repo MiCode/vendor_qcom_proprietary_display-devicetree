@@ -218,6 +218,8 @@ Optional properties:
 				tear effect (TE) IRQ blocks from "mdp_phys".
 				There should be one entry per INTF instance with
 				a zero value for INTFs without TE IRQ block.
+- qcom,sde-emulated-env:	Boolean property to indicate if the MDSS is running in an
+				emulated environment.
 - qcom,sde-off:			SDE offset from "mdp_phys" defined in reg property.
 - qcom,sde-cdm-off:	 	Array of offset addresses for the available
 				cdm blocks. These offsets will be calculated from
@@ -511,6 +513,9 @@ Optional properties:
 					silver or gold or gold+.
 - qcom,sde-qos-cpu-dma-latency:	A u32 value indicating desired PM QoS CPU DMA latency in usec.
 - qcom,sde-qos-cpu-irq-latency:	A u32 value indicating desired PM QoS CPU irq latency in usec.
+- qcom,sde-ipcc-protocol-id:	A u32 value indicating ipcc protocol id used for hw fencing feature.
+- qcom,sde-ipcc-client-dpu-phys-id:	A u32 value indicating ipcc physical client id of dpu used
+					for ipcc registers access.
 - qcom,sde-inline-rot-xin:	An integer array of xin-ids related to inline
 				rotation.
 - qcom,sde-inline-rot-xin-type:	A string array indicating the type of xin,
@@ -653,6 +658,7 @@ Example:
     #power-domain-cells = <0>;
 
     qcom,sde-hw-version = <0x70000000>;
+    qcom,sde-emulated-env;
     qcom,sde-off = <0x1000>;
     qcom,sde-ctl-off = <0x00002000 0x00002200 0x00002400
 		     0x00002600 0x00002800>;
@@ -827,6 +833,9 @@ Example:
     qcom,sde-qos-cpu-mask-performance = <0xf>;
     qcom,sde-qos-cpu-dma-latency = <300>;
     qcom,sde-qos-cpu-irq-latency = <300>;
+
+    qcom,sde-ipcc-protocol-id = <0x2>;
+    qcom,sde-ipcc-client-dpu-phys-id = <0x19>;
 
     qcom,sde-vbif-off = <0 0>;
     qcom,sde-vbif-id = <0 1>;

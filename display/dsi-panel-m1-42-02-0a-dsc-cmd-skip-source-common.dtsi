@@ -1,0 +1,99 @@
+/*DBV 2047-4095 500-1300nit  5.906V*/
+mi,mdss-dsi-skip-source-500-1300nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 00
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC E0
+];
+mi,mdss-dsi-skip-source-500-1300nit-mode-command-state = "dsi_hs_mode";
+
+/*DBV 819-2046 200-500nit 5.984V*/
+mi,mdss-dsi-skip-source-200-500nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 00
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC D0
+];
+mi,mdss-dsi-skip-source-200-500nit-mode-command-state = "dsi_hs_mode";
+
+/*DBV 450-818 110-200nit 5.984v*/
+mi,mdss-dsi-skip-source-110-200nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 00
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC D0
+];
+mi,mdss-dsi-skip-source-110-200nit-mode-command-state = "dsi_hs_mode";
+
+/*DBV 327-449 80-110nit 6.033v*/
+mi,mdss-dsi-skip-source-80-110nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 00
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC C6
+];
+mi,mdss-dsi-skip-source-80-110nit-mode-command-state = "dsi_hs_mode";
+
+/*DBV 299-326 72-79.7nit 5.828v*/
+mi,mdss-dsi-skip-source-72-79nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 00
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC F0
+];
+mi,mdss-dsi-skip-source-72-79nit-mode-command-state = "dsi_hs_mode";
+
+/*DBV 272-295 65-72nit 5.774v*/
+mi,mdss-dsi-skip-source-65-72nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 00
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC FB
+];
+mi,mdss-dsi-skip-source-65-72nit-mode-command-state = "dsi_hs_mode";
+
+/*DBV 245-271 60-65nit 5.570v*/
+mi,mdss-dsi-skip-source-60-65nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 10
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC 00
+];
+mi,mdss-dsi-skip-source-60-65nit-mode-command-state = "dsi_hs_mode";
+
+/*DBV 220-244 53-60nit 5.662v*/
+mi,mdss-dsi-skip-source-53-60nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 10
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC 12
+];
+mi,mdss-dsi-skip-source-53-60nit-mode-command-state = "dsi_hs_mode";
+
+/*DBV 132-219, 30-53nit 5.516v*/
+mi,mdss-dsi-skip-source-30-53nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 10
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC 30
+];
+mi,mdss-dsi-skip-source-30-53nit-mode-command-state = "dsi_hs_mode";
+
+/*DBV 0-132 0-53nit  5.516V*/
+mi,mdss-dsi-skip-source-0-30nit-mode-command = [
+	39 00 00 40 00 00 06 F0 55 AA 52 08 05
+	39 00 00 40 00 00 02 6F 03
+	39 00 00 40 00 00 02 EC 00
+	39 00 00 40 00 00 02 6F 06
+	39 00 00 40 00 00 02 EC E0
+];
+mi,mdss-dsi-skip-source-0-30nit-mode-command-state = "dsi_hs_mode";
