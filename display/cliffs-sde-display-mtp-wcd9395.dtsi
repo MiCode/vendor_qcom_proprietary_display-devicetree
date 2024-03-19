@@ -1,0 +1,5 @@
+#include "cliffs-sde-display-mtp.dtsi"
+
+&sde_dp {
+	qcom,dp-aux-switch = <&wcd_usbss>;
+};
