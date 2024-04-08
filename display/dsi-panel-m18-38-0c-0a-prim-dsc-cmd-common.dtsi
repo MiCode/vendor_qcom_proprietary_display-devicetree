@@ -1,0 +1,108 @@
+mi,mdss-dsi-dimmingon-command = [15 00 00 00 00 00 02 53 28];
+mi,mdss-dsi-dimmingon-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-dimmingoff-command = [15 00 00 00 00 00 02 53 20];
+mi,mdss-dsi-dimmingoff-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-flat-mode-on-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 04 B0 01 57 63
+	39 00 00 40 00 00 02 63 A3
+	39 00 00 40 00 00 04 B0 01 5C 63
+	39 00 00 40 00 00 02 63 4F
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-flat-mode-on-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-flat-mode-off-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 04 B0 01 57 63
+	39 00 00 40 00 00 02 63 83
+	39 00 00 40 00 00 04 B0 01 5C 63
+	39 00 00 40 00 00 02 63 4F
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-flat-mode-off-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-hbm-on-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 03 51 08 00
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-hbm-on-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-hbm-off-command = [
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 03 51 07 FF
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-hbm-off-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-doze-hbm-command = [
+	/* HOP Manual Mode 120Hz */
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 03 FC 5A 5A
+	39 00 00 40 00 00 04 B0 00 3A F2
+	39 00 00 40 00 00 02 F2 00
+	39 00 00 40 00 00 04 B0 00 15 BD
+	39 00 00 40 00 00 02 BD 41
+	/* Setting 120Hz */
+	39 00 00 40 00 00 03 60 08 00
+	39 00 00 40 00 00 03 B9 01 00
+	/* Global Para  */
+	39 00 00 40 00 00 04 B0 00 41 B9
+	/* Fix TE setting */
+	39 00 00 40 00 00 02 B9 80
+	/* Dimming speed setting */
+	39 00 00 40 00 00 04 B0 00 0E 66
+	/* 10 : 16 frame */
+	39 00 00 40 00 00 02 66 10
+	39 00 00 40 00 00 04 B0 00 03 F2
+	39 00 00 40 00 00 02 F2 41
+	39 00 00 40 00 00 02 F7 0F
+	39 00 00 40 00 00 03 FC A5 A5
+	39 00 00 00 2A 00 03 F0 A5 A5
+	/* AOD HBM Mode */
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 02 53 24
+	39 00 00 40 00 00 03 51 07 FF
+	39 00 00 40 00 00 02 F7 0F
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-doze-hbm-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-doze-lbm-command = [
+	/* HOP Manual Mode 120Hz */
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 03 FC 5A 5A
+	39 00 00 40 00 00 04 B0 00 3A F2
+	39 00 00 40 00 00 02 F2 00
+	39 00 00 40 00 00 04 B0 00 15 BD
+	39 00 00 40 00 00 02 BD 41
+	/* Setting 120Hz */
+	39 00 00 40 00 00 03 60 08 00
+	39 00 00 40 00 00 03 B9 01 00
+	/* Global Para  */
+	39 00 00 40 00 00 04 B0 00 41 B9
+	/* Fix TE setting */
+	39 00 00 40 00 00 02 B9 80
+	/* Dimming speed setting */
+	39 00 00 40 00 00 04 B0 00 0E 66
+	/* 10 : 16 frame */
+	39 00 00 40 00 00 02 66 10
+	39 00 00 40 00 00 04 B0 00 03 F2
+	39 00 00 40 00 00 02 F2 41
+	39 00 00 40 00 00 02 F7 0F
+	39 00 00 40 00 00 03 FC A5 A5
+	39 00 00 00 2A 00 03 F0 A5 A5
+	/* AOD LBM Mode */
+	39 00 00 40 00 00 03 F0 5A 5A
+	39 00 00 40 00 00 02 53 24
+	39 00 00 40 00 00 03 51 00 AA
+	39 00 00 40 00 00 02 F7 0F
+	39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-doze-lbm-command-state = "dsi_lp_mode";
+
+qcom,panel-roi-alignment = <1080 479 1080 479 1080 479>;
+qcom,partial-update-enabled = "single_roi";
