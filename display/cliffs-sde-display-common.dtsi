@@ -17,7 +17,6 @@
 #include "dsi-panel-vtdr6130-dsc-fhd-plus-60hz-video.dtsi"
 #include "dsi-panel-vtdr6130-qsync-dsc-fhd-plus-144hz-cmd.dtsi"
 #include "dsi-panel-vtdr6130-qsync-dsc-fhd-plus-144hz-video.dtsi"
-
 #include "cliffs-sde-display-pinctrl.dtsi"
 
 &soc {
@@ -72,7 +71,6 @@
 			qcom,supply-post-off-sleep = <2>;
 		};
 	};
-
 	dsi_panel_pwr_supply_lcd: dsi_panel_pwr_supply_lcd {
 		#address-cells = <1>;
 		#size-cells = <0>;

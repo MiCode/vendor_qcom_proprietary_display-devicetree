@@ -196,7 +196,7 @@
 	smmu_sde_unsec: qcom,smmu_sde_unsec_cb {
 		compatible = "qcom,smmu_sde_unsec";
 		iommus = <&apps_smmu 0x1c00 0x2>;
-		qcom,iommu-dma-addr-pool = <0x00060000 0xd50a0000 0xd7c00000 0x283f0000>;
+		qcom,iommu-dma-addr-pool = <0x00060000 0xfc3a0000 0xfef00000 0x10f0000>;
 		qcom,iommu-faults = "non-fatal";
 		qcom,iommu-earlymap; /* for cont-splash */
 		dma-coherent;
@@ -244,7 +244,7 @@
 			"qcom,sde-ebi-bus", "qcom,sde-reg-bus";
 
 	qcom,sde-has-idle-pc;
-
+	qcom,sde-wakeup-with-touch;
 	qcom,sde-ib-bw-vote = <2500000 0 800000>;
 	qcom,sde-dspp-ltm-version = <0x00010002>;
 	/* offsets are based off dspp 0, 1, 2, and 3 */

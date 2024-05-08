@@ -1,5 +1,9 @@
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 dtbo-$(CONFIG_ARCH_PINEAPPLE) += display/pineapple-sde.dtbo \
+		display/aurora-sde-display-mtp-overlay.dtbo \
+		display/shennong-sde-display-mtp-overlay.dtbo \
+		display/houji-sde-display-mtp-overlay.dtbo \
+		display/manet-sde-display-mtp-overlay.dtbo \
 		display/pineapple-sde-display-rumi-overlay.dtbo \
 		display/pineapple-sde-display-cdp-overlay.dtbo \
 		display/pineapple-sde-display-rcm-overlay.dtbo \
@@ -44,6 +48,7 @@ endif
 
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 dtbo-$(CONFIG_ARCH_CLIFFS) += display/cliffs-sde.dtbo \
+		display/chenfeng-sde-display-mtp-overlay.dtbo \
 		display/cliffs-sde-display-rumi-overlay.dtbo \
 		display/cliffs-sde-display-cdp-overlay.dtbo \
 		display/cliffs-sde-display-rcm-overlay.dtbo \
