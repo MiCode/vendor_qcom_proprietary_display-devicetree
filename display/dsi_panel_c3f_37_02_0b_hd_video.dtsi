@@ -1,0 +1,199 @@
+&mdss_mdp {
+	dsi_panel_c3f_37_02_0b_hd_video: qcom,mdss_dsi_panel_c3f_37_02_0b_hd_video {
+		qcom,mdss-dsi-panel-name =
+			"c3f 37 02 0b video mode hd dsi panel";
+		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-h-left-border = <0>;
+		qcom,mdss-dsi-h-right-border = <0>;
+		qcom,mdss-dsi-v-top-border = <0>;
+		qcom,mdss-dsi-v-bottom-border = <0>;
+		qcom,mdss-dsi-bpp = <24>;
+		qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-underflow-color = <0xff>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,mdss-dsi-h-sync-pulse = <0>;
+		qcom,mdss-dsi-traffic-mode = "non_burst_sync_event";
+		qcom,mdss-dsi-lane-map = "lane_map_0123";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-bl-inverted-dbv;
+		qcom,mdss-dsi-bl-lcd-number = <2>;
+		qcom,mdss-dsi-lp11-init;
+		qcom,mdss-dsi-pan-enable-dynamic-fps;
+		qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_vfp";
+		qcom,dsi-supported-dfps-list = <120 90 60>;
+		qcom,platform-reset-gpio-always-on;
+		qcom,mdss-dsi-reset-sequence = <0 5>, <1 5>, <0 5>, <1 10>;
+		qcom,mdss-pan-physical-width-dimension = <703>;
+		qcom,mdss-pan-physical-height-dimension = <1600>;
+		qcom,mdss-dsi-display-timings {
+			timing@0 {
+				qcom,mdss-dsi-panel-width = <720>;
+				qcom,mdss-dsi-panel-height = <1640>;
+				qcom,mdss-dsi-h-pulse-width = <4>;
+				qcom,mdss-dsi-h-back-porch = <60>;
+				qcom,mdss-dsi-h-front-porch = <22>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-v-pulse-width = <4>;
+				qcom,mdss-dsi-v-back-porch = <16>;
+				qcom,mdss-dsi-v-front-porch = <329>;
+				qcom,mdss-dsi-panel-framerate = <120>;
+				qcom,mdss-dsi-on-command = [
+
+					//CABC Setting
+					39 01 00 00 01 00 02 FF 23
+					39 01 00 00 00 00 02 FB 01
+					39 01 00 00 00 00 02 10 00
+					39 01 00 00 00 00 02 11 00
+					39 01 00 00 00 00 02 12 B4
+					39 01 00 00 00 00 02 15 E9
+					39 01 00 00 00 00 02 16 14
+					39 01 00 00 00 00 02 29 10
+					39 01 00 00 00 00 02 2A 30
+					39 01 00 00 00 00 02 2B 20
+					//CABC 1档
+					39 01 00 00 00 00 02 30 FF
+					39 01 00 00 00 00 02 31 FD
+					39 01 00 00 00 00 02 32 FD
+					39 01 00 00 00 00 02 33 FC
+					39 01 00 00 00 00 02 34 FB
+					39 01 00 00 00 00 02 35 FA
+					39 01 00 00 00 00 02 36 F9
+					39 01 00 00 00 00 02 37 F8
+					39 01 00 00 00 00 02 38 F7
+					39 01 00 00 00 00 02 39 F6
+					39 01 00 00 00 00 02 3A F5
+					39 01 00 00 00 00 02 3B F4
+					39 01 00 00 00 00 02 3D F3
+					39 01 00 00 00 00 02 3F F2
+					39 01 00 00 00 00 02 40 F1
+					39 01 00 00 00 00 02 41 EF
+					//CABC 2档
+					39 01 00 00 00 00 02 45 FF
+					39 01 00 00 00 00 02 46 FD
+					39 01 00 00 00 00 02 47 FA
+					39 01 00 00 00 00 02 48 F8
+					39 01 00 00 00 00 02 49 F6
+					39 01 00 00 00 00 02 4A F5
+					39 01 00 00 00 00 02 4B F3
+					39 01 00 00 00 00 02 4C DB
+					39 01 00 00 00 00 02 4D D7
+					39 01 00 00 00 00 02 4E CE
+					39 01 00 00 00 00 02 4F CD
+					39 01 00 00 00 00 02 50 CB
+					39 01 00 00 00 00 02 51 C8
+					39 01 00 00 00 00 02 52 C0
+					39 01 00 00 00 00 02 53 BE
+					39 01 00 00 00 00 02 54 BD
+					//CABC 3档
+					39 01 00 00 00 00 02 58 FF
+					39 01 00 00 00 00 02 59 FD
+					39 01 00 00 00 00 02 5A FC
+					39 01 00 00 00 00 02 5B F9
+					39 01 00 00 00 00 02 5C F7
+					39 01 00 00 00 00 02 5D F4
+					39 01 00 00 00 00 02 5E F3
+					39 01 00 00 00 00 02 5F DF
+					39 01 00 00 00 00 02 60 D8
+					39 01 00 00 00 00 02 61 D0
+					39 01 00 00 00 00 02 62 CB
+					39 01 00 00 00 00 02 63 C0
+					39 01 00 00 00 00 02 64 BE
+					39 01 00 00 00 00 02 65 B6
+					39 01 00 00 00 00 02 66 B1
+					39 01 00 00 00 00 02 67 AF
+
+					39 01 00 00 00 00 02 00 68   //11bit
+					39 01 00 00 00 00 02 07 00
+					39 01 00 00 00 00 02 08 01
+					39 01 00 00 00 00 02 09 80
+
+					39 01 00 00 01 00 02 FF 24  //改善crosstalk source间隔错位
+					39 01 00 00 00 00 02 FB 01
+					39 01 00 00 00 00 02 DB 0F
+					39 01 00 00 00 00 02 ED F0
+					39 01 00 00 00 00 02 F1 0F
+
+					39 01 00 00 00 00 02 FF 27
+					39 01 00 00 00 00 02 FB 01
+					39 01 00 00 00 00 02 7A 0B
+
+					39 01 00 00 00 00 02 D0 31  //ERR-FLAG FTE-1 Normal : High, Abnormal : Low
+					39 01 00 00 00 00 02 D1 25
+					39 01 00 00 00 00 02 D2 30
+					39 01 00 00 00 00 02 D4 08
+					39 01 00 00 00 00 02 DE C3
+					39 01 00 00 00 00 02 DF 02
+
+					39 01 00 00 00 00 02 96 0B  //温补65℃ VGH -3V
+					39 01 00 00 00 00 02 97 10
+					39 01 00 00 00 00 02 98 88
+					39 01 00 00 00 00 02 99 7B
+					39 01 00 00 00 00 02 B4 10
+
+					39 01 00 00 00 00 02 FF 2A  //flicker SCR
+					39 01 00 00 00 00 02 FB 01
+					39 01 00 00 00 00 02 1E 0B
+
+					39 01 00 00 00 00 02 FF 10
+					39 01 00 00 00 00 02 FB 01
+					39 01 00 00 00 00 03 5E 00 07
+
+					39 01 00 00 00 00 02 53 2C
+					39 01 00 00 00 00 02 55 00
+					39 01 00 00 00 00 03 68 02 01
+
+					15 01 00 00 64 00 02 11 00
+					15 01 00 00 05 00 02 29 00
+				];
+				qcom,mdss-dsi-off-command = [
+					39 01 00 00 00 00 03 68 05 02
+					15 01 00 00 64 00 02 28 00
+					15 01 00 00 0A 00 02 10 00
+				];
+				qcom,mdss-dsi-proximity-off-commands = [
+					15 01 00 00 32 00 02 28 00
+				];
+				mi,mdss-dsi-cabc-ui-on-command = [
+					39 01 00 00 00 00 02 FF 10
+					39 01 00 00 00 00 02 FB 01
+					39 01 00 00 00 00 02 55 01
+				];
+				mi,mdss-dsi-cabc-still-on-command =[
+					39 01 00 00 00 00 02 FF 10
+					39 01 00 00 00 00 02 FB 01
+					39 01 00 00 00 00 02 55 03
+				];
+				mi,mdss-dsi-cabc-movie-on-command = [
+					39 01 00 00 00 00 02 FF 10
+					39 01 00 00 00 00 02 FB 01
+					39 01 00 00 00 00 02 55 02
+				];
+				mi,mdss-dsi-cabc-off-command =[
+					39 01 00 00 00 00 02 FF 10
+					39 01 00 00 00 00 02 FB 01
+					39 01 00 00 00 00 02 55 00
+				];
+
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
+				mi,mdss-dsi-cabc-ui-on-command-state = "dsi_lp_mode";
+				mi,mdss-dsi-cabc-still-on-command-state = "dsi_lp_mode";
+				mi,mdss-dsi-cabc-movie-on-command-state = "dsi_lp_mode";
+				mi,mdss-dsi-cabc-off-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-proximity-off-commands-state = "dsi_lp_mode";
+			};
+		};
+	};
+};
