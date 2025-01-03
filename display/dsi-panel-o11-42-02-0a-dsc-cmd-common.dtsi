@@ -1,0 +1,75 @@
+qcom,mdss-dsi-off-command = [
+	39 00 00 00 0A 00 02 28 00
+	39 00 00 00 69 00 02 10 00
+];
+qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-flat-mode-on-command = [
+	15 00 00 00 00 00 02 5F 00
+];
+mi,mdss-dsi-flat-mode-on-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-flat-mode-off-command = [
+	15 00 00 00 00 00 02 5F 01
+];
+mi,mdss-dsi-flat-mode-off-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-doze-hbm-command = [
+	/* ERR Flag disable */
+	39 00 00 40 00 00 06 F0 55 AA 52 08 00
+	15 00 00 40 00 00 02 6F 05
+	15 00 00 40 00 00 02 BE 00
+	/* AOD Mode on */
+	15 00 00 40 00 00 02 2F 00
+	15 00 00 40 00 00 02 6F 04
+	39 00 00 40 00 00 03 51 3F FF
+	15 00 00 00 00 00 02 39 00
+];
+mi,mdss-dsi-doze-hbm-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-doze-lbm-command = [
+	/* ERR Flag disable */
+	39 00 00 40 00 00 06 F0 55 AA 52 08 00
+	15 00 00 40 00 00 02 6F 05
+	15 00 00 40 00 00 02 BE 00
+	/* AOD Mode on */
+	15 00 00 40 00 00 02 2F 00
+	15 00 00 40 00 00 02 6F 04
+	39 00 00 40 00 00 03 51 05 54
+	15 00 00 00 00 00 02 39 00
+];
+mi,mdss-dsi-doze-lbm-command-state = "dsi_lp_mode";
+
+qcom,mdss-dsi-cmd-mode;
+qcom,mdss-dsi-panel-width = <1440>;
+qcom,mdss-dsi-panel-height = <3200>;
+qcom,mdss-dsi-h-front-porch = <8>;
+qcom,mdss-dsi-h-back-porch = <8>;
+qcom,mdss-dsi-h-pulse-width = <12>;
+qcom,mdss-dsi-v-back-porch = <6>;
+qcom,mdss-dsi-v-front-porch = <16>;
+qcom,mdss-dsi-v-pulse-width = <14>;
+qcom,mdss-dsi-h-sync-pulse = <0>;
+qcom,mdss-dsi-h-left-border = <0>;
+qcom,mdss-dsi-h-right-border = <0>;
+qcom,mdss-dsi-v-top-border = <0>;
+qcom,mdss-dsi-v-bottom-border = <0>;
+qcom,mdss-dsi-panel-clockrate = <1200000000>;
+qcom,mdss-dsi-panel-jitter = <0x5 0x1>;
+qcom,mdss-mdp-transfer-time-us = <7300>;
+
+qcom,mdss-dsi-panel-phy-timings = [00 27 0A 0A 1B 19 0A 0B 0A 02 04 00 20 0F];
+qcom,display-topology = <2 2 1>;
+qcom,default-topology-index = <0>;
+
+/*dsc common*/
+qcom,compression-mode = "dsc";
+qcom,mdss-dsc-version = <0x12>;
+qcom,mdss-dsc-scr-version = <0x0>;
+qcom,mdss-dsc-slice-height = <20>;
+qcom,mdss-dsc-slice-width = <720>;
+qcom,mdss-dsc-slice-per-pkt = <2>;
+qcom,mdss-dsc-bit-per-component = <10>;
+qcom,mdss-dsc-bit-per-pixel = <8>;
+qcom,mdss-dsc-block-prediction-enable;
+qcom,src-chroma-format = <1>; // add in each timing node to enable 4:2:2 mode

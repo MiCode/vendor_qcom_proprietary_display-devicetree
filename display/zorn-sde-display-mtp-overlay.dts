@@ -1,0 +1,10 @@
+/dts-v1/;
+/plugin/;
+#include "zorn-sde-display.dtsi"
+/ {
+	model = "Qualcomm Technologies, Inc. Manet based on SM8650";
+	compatible = "qcom,pineapple-mtp", "qcom,pineapple", "qcom,pineapplep-mtp", "qcom,pineapplep", "qcom,mtp";
+	qcom,msm-id = <557 0x10000>, <557 0x20000>, <577 0x10000>, <577 0x20000>;
+	qcom,board-id = <8 0>;
+	xiaomi,miboard-id = <0xd 0>;
+};
