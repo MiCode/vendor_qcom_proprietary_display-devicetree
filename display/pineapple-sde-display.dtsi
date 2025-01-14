@@ -4,7 +4,8 @@
 
 &pm8550_gpios {
 	display_panel_avdd_default: display_panel_avdd_default {
-		pins = "gpio11";
+		status= "disabled";
+		//pins = "gpio11";
 		function = "normal";
 		input-disable;
 		output-enable;
@@ -32,12 +33,13 @@
 	};
 
 	display_panel_avdd: display_gpio_regulator@1 {
+		status= "disabled";
 		compatible = "qti-regulator-fixed";
 		regulator-name = "display_panel_avdd";
 		regulator-min-microvolt = <5500000>;
 		regulator-max-microvolt = <5500000>;
 		regulator-enable-ramp-delay = <233>;
-		gpio = <&pm8550_gpios 11 0>;
+		//gpio = <&pm8550_gpios 11 0>;
 		enable-active-high;
 		regulator-boot-on;
 		proxy-supply = <&display_panel_avdd>;
@@ -46,15 +48,15 @@
 		pinctrl-0 = <&display_panel_avdd_default>;
 	};
 
-	disp_rdump_memory: disp_rdump_region@d5100000 {
-		reg = <0xd5100000 0x00800000>;
+	disp_rdump_memory: disp_rdump_region@fc400000 {
+		reg = <0xfc400000 0x01400000>;
 		label = "disp_rdump_region";
 	};
 };
 
 &reserved_memory {
 	splash_memory: splash_region {
-		reg = <0x0 0xd5100000 0x0 0x02b00000>;
+		reg = <0x0 0xfc400000 0x0 0x02b00000>;
 		label = "cont_splash_region";
 	};
 	/*
@@ -95,6 +97,7 @@
 	clock-names = "pll_byte_clk0", "pll_dsi_clk0",
 		      "pll_byte_clk1", "pll_dsi_clk1",
 		      "mdp_core_clk";
+	qcom,dsi-default-panel = <&dsi_r66451_amoled_video>;
 	vddio-supply = <&L12B>;
 	vci-supply = <&L13B>;
 	vdd-supply = <&L11B>;
@@ -126,10 +129,6 @@
 	vddio-supply = <&L12B>;
 	vci-supply = <&L13B>;
 	vdd-supply = <&L11B>;
-};
-
-&mdss_mdp {
-	connectors = <&sde_dsi &sde_dsi1 &smmu_sde_unsec &sde_wb1 &sde_wb2 &sde_rscc &sde_dp>;
 };
 
 &dsi_vtdr6130_amoled_cmd {

@@ -1,0 +1,140 @@
+mi,mdss-dsi-exit-90fps-timing-switch-command = [
+    // 90hz switch to 120hz
+    39 00 00 40 00 00 03 F0 5A 5A
+    39 00 00 40 00 00 02 B9 51
+    39 00 00 40 00 00 04 B0 00 08 B9
+    39 00 00 40 00 00 09 B9 00 00 00 4F 00 30 00 4F
+    39 00 00 40 00 00 02 BD E1
+    39 00 00 40 00 00 02 60 10
+    39 00 00 40 00 00 04 B0 00 17 F2
+    39 00 00 40 00 00 07 F2 02 F2 02 F2 02 F2
+    39 00 00 40 00 00 04 B0 00 8C 90
+    39 00 00 40 00 00 02 90 00
+    39 00 00 40 00 00 04 B0 00 03 F2
+    39 00 00 40 00 00 02 F2 02
+    39 00 00 40 00 00 02 F7 0F
+    39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-exit-90fps-timing-switch-command-state = "dsi_hs_mode";
+
+qcom,mdss-dsi-off-command = [
+	/* PANEL OFF */
+	05 00 00 00 00 00 01 28
+	05 00 00 00 78 00 01 10
+];
+qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-flat-mode-on-command = [
+    39 00 00 40 00 00 03 F0 5A 5A
+    39 00 00 40 00 00 04 B0 00 AF 93
+    39 00 00 00 00 00 02 93 2B
+    39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-flat-mode-on-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-flat-mode-off-command = [
+    39 00 00 40 00 00 03 F0 5A 5A
+    39 00 00 40 00 00 04 B0 00 AF 93
+    39 00 00 00 00 00 02 93 0B
+    39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-flat-mode-off-command-state = "dsi_lp_mode";
+
+qcom,mdss-dsi-nolp-command = [
+	/* AOD OFF */
+    39 00 00 40 00 00 03 F0 5A 5A
+    39 00 00 40 00 00 04 B0 00 03 BB
+    39 00 00 40 00 00 03 BB 45 06
+    39 00 00 00 24 00 03 51 00 F5
+    39 00 00 40 00 00 02 53 20
+    39 00 00 00 00 00 02 F7 0F
+    39 00 00 00 22 00 03 F0 A5 A5
+];
+qcom,mdss-dsi-nolp-command-update = <0x51 3 2>;
+qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-doze-hbm-command = [
+    39 00 00 40 00 00 03 F0 5A 5A
+    39 00 00 40 00 00 02 B9 51
+    39 00 00 40 00 00 04 B0 00 02 B9
+    39 00 00 40 00 00 02 B9 00
+    39 00 00 40 00 00 04 B0 00 08 B9
+    39 00 00 40 00 00 09 B9 00 00 00 4F 00 30 00 4F
+    39 00 00 40 00 00 02 BD E1
+    39 00 00 40 00 00 02 F2 01
+    39 00 00 40 00 00 04 B0 00 44 BD
+    39 00 00 40 00 00 05 BD 00 24 00 48
+    39 00 00 40 00 00 04 B0 00 4C BD
+    39 00 00 40 00 00 03 BD 00 7E
+    39 00 00 40 00 00 02 60 10
+    39 00 00 00 00 00 02 F7 0F
+    39 00 00 00 22 00 03 F0 A5 A5
+	/* AOD ON */
+    39 00 00 40 00 00 03 F0 5A 5A
+    39 00 00 40 00 00 02 53 24
+    39 00 00 40 00 00 03 51 07 FF
+    39 00 00 40 00 00 03 60 00 02
+    39 00 00 00 00 00 02 F7 0F
+    39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-doze-hbm-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-doze-lbm-command = [
+    39 00 00 40 00 00 03 F0 5A 5A
+    39 00 00 40 00 00 02 B9 51
+    39 00 00 40 00 00 04 B0 00 02 B9
+    39 00 00 40 00 00 02 B9 00
+    39 00 00 40 00 00 04 B0 00 08 B9
+    39 00 00 40 00 00 09 B9 00 00 00 4F 00 30 00 4F
+    39 00 00 40 00 00 02 BD E1
+    39 00 00 40 00 00 02 F2 01
+    39 00 00 40 00 00 04 B0 00 44 BD
+    39 00 00 40 00 00 05 BD 00 24 00 48
+    39 00 00 40 00 00 04 B0 00 4C BD
+    39 00 00 40 00 00 03 BD 00 7E
+    39 00 00 40 00 00 02 60 10
+    39 00 00 00 00 00 02 F7 0F
+    39 00 00 00 22 00 03 F0 A5 A5
+	/* AOD ON */
+    39 00 00 40 00 00 03 F0 5A 5A
+    39 00 00 40 00 00 02 53 24
+    39 00 00 40 00 00 03 51 01 97
+    39 00 00 40 00 00 03 60 00 02
+    39 00 00 00 00 00 02 F7 0F
+    39 00 00 00 00 00 03 F0 A5 A5
+];
+mi,mdss-dsi-doze-lbm-command-state = "dsi_hs_mode";
+
+qcom,mdss-dsi-panel-width = <2488>;
+qcom,mdss-dsi-panel-height = <2224>;
+qcom,mdss-dsi-h-front-porch = <9>;
+qcom,mdss-dsi-h-back-porch = <16>;
+qcom,mdss-dsi-h-pulse-width = <16>;
+qcom,mdss-dsi-v-back-porch = <8>;
+qcom,mdss-dsi-v-front-porch = <8>;
+qcom,mdss-dsi-v-pulse-width = <8>;
+qcom,mdss-dsi-h-sync-pulse = <0>;
+qcom,mdss-dsi-h-left-border = <0>;
+qcom,mdss-dsi-h-right-border = <0>;
+qcom,mdss-dsi-v-top-border = <0>;
+qcom,mdss-dsi-v-bottom-border = <0>;
+qcom,mdss-dsi-panel-clockrate = <1440000000>;
+qcom,mdss-dsi-panel-jitter = <0x5 0x1>;
+
+/*dsc*/
+qcom,compression-mode = "dsc";
+qcom,mdss-dsc-version = <0x12>;
+qcom,mdss-dsc-scr-version = <0x0>;
+qcom,mdss-dsc-slice-height = <139>;
+qcom,mdss-dsc-slice-width = <1244>;
+qcom,mdss-dsc-slice-per-pkt = <2>;
+qcom,mdss-dsc-bit-per-component = <10>;
+qcom,mdss-dsc-bit-per-pixel = <8>;
+qcom,mdss-dsc-block-prediction-enable;
+//qcom,src-chroma-format = <1>; // add in each timing node to enable 4:2:2 mode
+
+qcom,mdss-dsi-panel-phy-timings = [00 2E 0C 0C 1D 1B 0C 0D 0B 02 04 00 25 11];
+qcom,display-topology = <2 2 1>;
+qcom,default-topology-index = <0>;
+qcom,panel-roi-alignment = <2488 139 2488 139 2488 139>;
+qcom,partial-update-enabled = "single_roi";
