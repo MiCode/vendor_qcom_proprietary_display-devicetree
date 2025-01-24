@@ -1,0 +1,153 @@
+#include "sun-sde-display.dtsi"
+#include "dsi-panel-o3-42-0d-0a-dsc-cmd.dtsi"
+#include "dsi-panel-nt37801-dsc-wqhd-plus-video.dtsi"
+
+&soc {
+	display_panel_vddd: display_panel_vddd {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vddd";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		gpio = <&tlmm 120 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+
+	display_panel_vddioldo: display_panel_vddioldo {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vddioldo";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		gpio = <&tlmm 112 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+
+	dsi_panel_pwr_supply_O3: dsi_panel_pwr_supply_O3 {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <2>;
+			qcom,supply-post-off-sleep = <0>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-post-off-sleep = <1>;
+		};
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "vddd";
+			qcom,supply-min-voltage = <1200000>;
+			qcom,supply-max-voltage = <1200000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-pre-off-sleep = <1>;
+			qcom,supply-post-off-sleep = <2>;
+		};
+	};
+
+	dsi_panel_pwr_supply_O3GL: dsi_panel_pwr_supply_O3GL {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddioldo";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <2>;
+			qcom,supply-post-off-sleep = <0>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-post-off-sleep = <1>;
+		};
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "vddd";
+			qcom,supply-min-voltage = <1200000>;
+			qcom,supply-max-voltage = <1200000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-pre-off-sleep = <1>;
+			qcom,supply-post-off-sleep = <2>;
+		};
+	};
+};
+
+&display_panel_avdd {
+	status = "disabled";
+};
+
+&dsi_nt37801_amoled_video {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <10>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <2047>;
+	qcom,mdss-dsi-bl-inverted-dbv;
+	qcom,platform-reset-gpio = <&tlmm 98 0>;
+};
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_nt37801_amoled_video>;
+	vddd-supply = <&display_panel_vddd>;
+	vddio-supply = <&L2G>;
+	vddioldo-supply = <&display_panel_vddioldo>;
+	vci-supply = <&L13B>;
+};
+
+&sde_dsi1 {
+	status = "disabled";
+};
+
+&mdss_mdp {
+	connectors = <&sde_dsi &smmu_sde_unsec &smmu_sde_sec &sde_wb1 &sde_wb2 &sde_dp &sde_cesta>;
+};
+
+&sde_dp {
+	qcom,max-lclk-frequency-khz = <540000>;
+	status = "ok";
+};
+
+&qupv3_se2_spi {
+	synaptics_tcm@0 {
+		panel = <&dsi_o3_42_0d_0a_dsc_cmd
+			&dsi_nt37801_amoled_video>;
+	};
+};
+
+&soc {
+	charge_screen: charge-screen {
+		panel  = <&dsi_o3_42_0d_0a_dsc_cmd
+			&dsi_nt37801_amoled_video>;
+	};
+};
+
+&soc {
+	thermal_screen: thermal-screen {
+		panel = <&dsi_o3_42_0d_0a_dsc_cmd
+			&dsi_nt37801_amoled_video>;
+	};
+	fingerprint_screen: fingerprint-screen {
+		panel = <&dsi_o3_42_0d_0a_dsc_cmd
+			&dsi_nt37801_amoled_video>;
+	};
+};

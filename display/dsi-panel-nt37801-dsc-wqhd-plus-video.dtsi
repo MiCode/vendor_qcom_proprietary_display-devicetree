@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
 &mdss_mdp {
 	dsi_nt37801_amoled_video: qcom,mdss_dsi_nt37801_wqhd_plus_vid {
 		qcom,mdss-dsi-panel-name =
@@ -28,6 +33,25 @@
 		qcom,mdss-dsi-wr-mem-start = <0x2c>;
 		qcom,mdss-dsi-wr-mem-continue = <0x3c>;
 		qcom,spr-pack-type = "pentile";
+		/*
+		 * ###############################################################
+		 * # Pentile SPR phases for SM8750 and later
+		 * ###############################################################
+		 * # RG/BG Type A    BG/RG Type A    GR/GB Type A    GB/GR Type A
+		 * # R B R B ...     B R B R ...      R B R B ...     B R B R ...
+		 * #  G G G G ...     G G G G ...    G G G G ...     G G G G ...
+		 * #
+		 * # RG/BG Type B    BG/RG Type B    GR/GB Type B    GB/GR Type B
+		 * #  G G G G ...     G G G G ...    G G G G ...     G G G G ...
+		 * # R B R B ...     B R B R ...      R B R B ...     B R B R ...
+		 * ###############################################################
+		 */
+		qcom,spr-pentile-pack-type = "BG-RG Type B";
+		qcom,mdss-dsi-panel-hdr-enabled;
+		qcom,mdss-dsi-panel-hdr-color-primaries = <15150 15750 34250
+			15700 12250 35800 6750 2550>;
+		qcom,mdss-dsi-panel-peak-brightness = <13000000>;
+		qcom,mdss-dsi-panel-blackness-level = <10>;
 		qcom,mdss-dsi-display-timings {
 			timing@0 {
 				cell-index = <0>;
@@ -72,9 +96,14 @@
 					39 01 00 00 00 00 05 2A 00 00 05 9F
 					39 01 00 00 00 00 05 2B 00 00 0C 7F
 					39 01 00 00 00 00 03 90 03 03
-					39 01 00 00 00 00 13 91 89 28 00 28 D2
-					   00 02 86 04 3A 00 0A 02 AB 01 E9 10
-					   F0
+					39 01 00 00 00 00 13 91 89 28 00 28 c2
+					   00 02 68 04 6c 00 0a 02 77 01 e9 10
+					   f0
+					39 01 00 00 00 00 05 ff aa 55 a5 81
+					39 01 00 00 00 00 02 6f 23
+					39 01 00 00 00 00 15 fb 00 01 00 11 33
+					   33 33 55 57 d0 00 00 44 56 77 78 9a
+					   bc dd f0
 					39 01 00 00 00 00 02 6F 06
 					39 01 00 00 00 00 02 F3 DC
 					39 01 00 00 00 00 02 26 00
@@ -100,6 +129,7 @@
 				qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
 				qcom,mdss-dsi-h-sync-pulse = <0>;
 				qcom,compression-mode = "dsc";
+				qcom,mdss-dsc-rc-override_v1;
 				qcom,mdss-dsc-slice-height = <40>;
 				qcom,mdss-dsc-slice-width = <720>;
 				qcom,mdss-dsc-slice-per-pkt = <1>;
@@ -107,6 +137,20 @@
 				qcom,mdss-dsc-bit-per-pixel = <8>;
 				qcom,mdss-dsc-block-prediction-enable;
 			};
+		};
+	};
+};
+
+&dsi_nt37801_amoled_video {
+	qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+	qcom,dsi-select-sec-clocks = "pll_byte_clk1", "pll_dsi_clk1";
+
+	qcom,mdss-dsi-display-timings {
+		timing@0 {
+			qcom,mdss-dsi-panel-phy-timings = [00 28 0a 0b 1b 1a 0a
+					0b 0a 02 04 00 21 0f];
+			qcom,display-topology = <2 2 1>;
+			qcom,default-topology-index = <0>;
 		};
 	};
 };

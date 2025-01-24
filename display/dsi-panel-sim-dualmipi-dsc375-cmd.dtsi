@@ -1,3 +1,8 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
 &mdss_mdp {
 	dsi_dual_sim_dsc_375_cmd: qcom,mdss_dsi_dual_sim_dsc_375_cmd {
 		qcom,mdss-dsi-panel-name =
@@ -543,7 +548,7 @@
 					/* CMD1 */
 					15 01 00 00 00 00 02 ff 10
 					/* VBP+VSA=,VFP = 10H */
-					15 01 00 00 00 00 04 3B 03 0A 0A
+					39 01 00 00 00 00 04 3B 03 0A 0A
 					/* FTE on */
 					15 01 00 00 00 00 02 35 00
 					/* EN_BK =1(auto black) */
@@ -722,7 +727,7 @@
 					/* CMD1 */
 					15 01 00 00 00 00 02 ff 10
 					/* VBP+VSA=,VFP = 10H */
-					15 01 00 00 00 00 04 3B 03 0A 0A
+					39 01 00 00 00 00 04 3B 03 0A 0A
 					/* FTE on */
 					15 01 00 00 00 00 02 35 00
 					/* EN_BK =1(auto black) */
@@ -901,7 +906,7 @@
 					/* CMD1 */
 					15 01 00 00 00 00 02 ff 10
 					/* VBP+VSA=,VFP = 10H */
-					15 01 00 00 00 00 04 3B 03 0A 0A
+					39 01 00 00 00 00 04 3B 03 0A 0A
 					/* FTE on */
 					15 01 00 00 00 00 02 35 00
 					/* EN_BK =1(auto black) */
@@ -1080,7 +1085,7 @@
 					/* CMD1 */
 					15 01 00 00 00 00 02 ff 10
 					/* VBP+VSA=,VFP = 10H */
-					15 01 00 00 00 00 04 3B 03 0A 0A
+					39 01 00 00 00 00 04 3B 03 0A 0A
 					/* FTE on */
 					15 01 00 00 00 00 02 35 00
 					/* EN_BK =1(auto black) */

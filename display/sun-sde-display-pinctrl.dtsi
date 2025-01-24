@@ -111,4 +111,58 @@
 			};
 		};
 	};
+
+	pmx_sde_esync: pmx_sde_esync {
+		sde_esync0_active: sde_esync0_active {
+			mux {
+				pins = "gpio88";
+				function = "mdp_esync0_out";
+			};
+
+			config {
+				pins = "gpio88";
+				drive-strength = <2>;   /* 2 mA */
+				bias-pull-down;         /* PULL DOWN */
+			};
+		};
+
+		sde_esync0_suspend: sde_esync0_suspend {
+			mux {
+				pins = "gpio88";
+				function = "mdp_esync0_out";
+			};
+
+			config {
+				pins = "gpio88";
+				drive-strength = <2>;   /* 2 mA */
+				bias-pull-down;         /* PULL DOWN */
+			};
+		};
+
+		sde_esync1_active: sde_esync1_active {
+			mux {
+				pins = "gpio100";
+				function = "mdp_esync1_out";
+			};
+
+			config {
+				pins = "gpio100";
+				drive-strength = <2>;   /* 2 mA */
+				bias-pull-down;         /* PULL DOWN */
+			};
+		};
+
+		sde_esync1_suspend: sde_esync1_suspend {
+			mux {
+				pins = "gpio100";
+				function = "mdp_esync1_out";
+			};
+
+			config {
+				pins = "gpio100";
+				drive-strength = <2>;   /* 2 mA */
+				bias-pull-down;         /* PULL DOWN */
+			};
+		};
+	};
 };

@@ -14,12 +14,12 @@
 		      <0x0aeb0000 0x2008>,
 		      <0x0af80000 0x7000>,
 		      <0x400000 0x2000>,
-		      <0x0af08000 0x24>;
+		      <0x0af50000 0x128>;
 		reg-names = "mdp_phys",
 			"vbif_phys",
 			"regdma_phys",
 			"ipcc_reg",
-			"disp_cc";
+			"swfuse_phys";
 
 		/* interrupt config */
 		interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
@@ -261,6 +261,7 @@
 
 		qcom,sde-cdp-setting = <1 1>, <1 0>;
 
+		qcom,sde-qos-cpu-mask = <0x3>;
 		qcom,sde-qos-cpu-mask-performance = <0x3>;
 		qcom,sde-qos-cpu-dma-latency = <300>;
 		qcom,sde-qos-cpu-irq-latency = <300>;

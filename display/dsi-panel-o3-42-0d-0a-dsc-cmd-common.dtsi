@@ -1,0 +1,155 @@
+qcom,mdss-dsi-off-command = [
+	05 00 00 00 00 00 01 28
+	05 00 00 00 78 00 01 10
+];
+qcom,mdss-dsi-off-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-vint-off-command = [
+	39 00 00 40 00 00 03 F0 AA 12
+	39 00 00 40 00 00 02 BF 63
+	39 00 00 40 00 00 02 65 30
+	39 00 00 40 00 00 02 BF 63
+	39 00 00 40 00 00 02 D9 63
+	39 00 00 40 00 00 02 65 30
+	39 00 00 40 00 00 02 D9 63
+	39 00 00 40 00 00 02 DF 63
+	39 00 00 40 00 00 02 65 30
+	39 00 00 40 00 00 02 DF 63
+	39 00 00 40 00 00 02 EB 63
+	39 00 00 40 00 00 02 65 30
+	39 00 00 00 00 00 02 EB 63
+];
+mi,mdss-dsi-vint-off-command-state = "dsi_lp_mode";
+mi,mdss-dsi-hbm-on-command = [
+	39 00 00 40 00 00 03 F0 AA 10 //PAGE 0
+	15 00 00 40 00 00 02 65 01 //shift index
+	15 00 00 40 00 00 02 D0 05 //ELVSS DIMMING Disable
+	39 00 00 00 00 00 03 51 17 FF
+];
+mi,mdss-dsi-hbm-on-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-hbm-off-command = [
+	39 00 00 40 00 00 03 F0 AA 10 //PAGE 0
+	15 00 00 40 00 00 02 65 01 //shift index
+	15 00 00 40 00 00 02 D0 04 //ELVSS DIMMING Disable
+	39 00 00 00 00 00 03 51 0A AB
+];
+mi,mdss-dsi-hbm-off-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-doze-hbm-command = [
+	39 00 00 40 00 00 03 F0 AA 1B
+	15 00 00 40 00 00 02 D0 00
+	15 00 00 40 00 00 02 75 00
+	15 00 00 00 09 00 02 71 00 /*RETURN 120HZ*/
+	39 00 00 40 00 00 03 F0 AA 1B /*page 11*/
+	39 00 00 40 00 00 0E D2 04 01 03 04 0B 0B 0B 0B 0B 00 0E E0 00
+	15 00 00 40 00 00 02 D0 11 /*FRAME SKIP ON*/
+	05 00 00 40 00 00 01 39 /*aod in*/
+	15 00 00 40 00 00 02 6D 00 /*60nit*/
+	15 00 00 40 00 00 02 75 01 /*aod 1hz*/
+	/*FIX TE ON*/
+	39 00 00 40 00 00 03 F0 AA 10
+	15 00 00 00 00 00 02 CF 09
+];
+mi,mdss-dsi-doze-hbm-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-doze-lbm-command = [
+	39 00 00 40 00 00 03 F0 AA 1B
+	15 00 00 40 00 00 02 D0 00
+	15 00 00 40 00 00 02 75 00
+	15 00 00 00 09 00 02 71 00 /*RETURN 120HZ*/
+	39 00 00 40 00 00 03 F0 AA 1B /*page 11*/
+	39 00 00 40 00 00 0E D2 04 01 03 04 0B 0B 0B 0B 0B 00 0E E0 00
+	15 00 00 40 00 00 02 D0 11 /*FRAME SKIP ON*/
+	05 00 00 40 00 00 01 39 /*aod in*/
+	15 00 00 40 00 00 02 6D 02 /*5 nit*/
+	15 00 00 40 00 00 02 75 01 /*aod 1hz*/
+	/*FIX TE ON*/
+	39 00 00 40 00 00 03 F0 AA 10
+	15 00 00 00 00 00 02 CF 09
+];
+mi,mdss-dsi-doze-lbm-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-doze-hbm-nolp-command = [
+	05 00 00 40 00 00 01 38
+	15 00 00 40 00 00 02 75 00
+	39 00 00 40 00 00 03 F0 AA 1B
+	15 00 00 40 00 00 02 D0 00
+	39 00 00 40 00 00 03 51 00 EE
+	/*FIX TE OFF*/
+	39 00 00 40 00 00 03 F0 AA 10
+	15 00 00 00 00 00 02 CF 16
+];
+
+mi,mdss-dsi-doze-lbm-nolp-command = [
+	05 00 00 40 00 00 01 38
+	15 00 00 40 00 00 02 75 00
+	39 00 00 40 00 00 03 F0 AA 1B
+	15 00 00 40 00 00 02 D0 00
+	39 00 00 40 00 00 03 51 00 14
+	/*FIX TE OFF*/
+	39 00 00 40 00 00 03 F0 AA 10
+	15 00 00 00 00 00 02 CF 16
+];
+mi,mdss-dsi-doze-hbm-nolp-command-state = "dsi_lp_mode";
+mi,mdss-dsi-doze-lbm-nolp-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-round-corner-on-command = [
+	/*round on */
+	39 00 00 40 00 00 03 F0 AA 18
+	15 00 00 00 00 00 02 B0 80
+];
+mi,mdss-dsi-round-corner-on-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-round-corner-off-command = [
+	/*round off */
+	39 00 00 40 00 00 03 F0 AA 18
+	15 00 00 00 00 00 02 B0 00
+];
+mi,mdss-dsi-round-corner-off-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-auto-current-limit-command = [
+	39 00 00 40 00 00 03 F0 AA 11
+	39 00 00 00 00 00 03 C1 03 FF
+];
+mi,mdss-dsi-auto-current-limit-command-state = "dsi_lp_mode";
+mi,mdss-dsi-auto-current-limit-command-update = <0xC1 1 2>;
+
+mi,mdss-dsi-dimmingon-command = [15 00 00 00 00 00 02 53 28];
+mi,mdss-dsi-dimmingon-command-state = "dsi_hs_mode";
+mi,mdss-dsi-dimmingoff-command = [15 00 00 00 00 00 02 53 20];
+mi,mdss-dsi-dimmingoff-command-state = "dsi_hs_mode";
+
+/*timming common*/
+qcom,mdss-dsi-panel-width = <1200>;
+qcom,mdss-dsi-panel-height = <2670>;
+qcom,mdss-dsi-h-front-porch = <16>;
+qcom,mdss-dsi-h-back-porch = <32>;
+qcom,mdss-dsi-h-pulse-width = <16>;
+qcom,mdss-dsi-v-back-porch = <37>;
+qcom,mdss-dsi-v-front-porch = <45>;
+qcom,mdss-dsi-v-pulse-width = <8>;
+qcom,mdss-dsi-h-sync-pulse = <0>;
+qcom,mdss-dsi-h-left-border = <0>;
+qcom,mdss-dsi-h-right-border = <0>;
+qcom,mdss-dsi-v-top-border = <0>;
+qcom,mdss-dsi-v-bottom-border = <0>;
+qcom,mdss-dsi-panel-clockrate = <1150000000>;
+qcom,mdss-dsi-panel-jitter = <0x5 0x1>;
+qcom,mdss-mdp-transfer-time-us = <7300>;
+
+qcom,mdss-dsi-panel-phy-timings = [00 26 0A 0A 1B 19 0A 0A 0A 02 04 00 20 0F];
+qcom,display-topology = <2 2 1>;
+qcom,default-topology-index = <0>;
+
+/*dsc common*/
+qcom,compression-mode = "dsc";
+qcom,mdss-dsc-version = <0x12>;
+qcom,mdss-dsc-scr-version = <0x0>;
+qcom,mdss-dsc-slice-height = <30>;
+qcom,mdss-dsc-slice-width = <600>;
+qcom,mdss-dsc-slice-per-pkt = <2>;
+qcom,mdss-dsc-bit-per-component = <10>;
+qcom,mdss-dsc-bit-per-pixel = <8>;
+qcom,mdss-dsc-block-prediction-enable;
+qcom,src-chroma-format = <1>; // add in each timing node to enable 4:2:2 mode

@@ -1,7 +1,10 @@
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 dtbo-$(CONFIG_ARCH_SUN) += display/sun-sde.dtbo \
+		display/haotian-sde-display-mtp-overlay.dtbo \
+		display/miro-sde-display-mtp-overlay.dtbo \
+		display/dada-sde-display-mtp-overlay.dtbo \
+		display/nirvana-sde-display-mtp-overlay.dtbo \
 		display/sun-sde-display-cdp-overlay.dtbo \
-		display/sun-sde-display-mtp-overlay.dtbo \
 		display/sun-sde-display-rumi-overlay.dtbo \
 		display/sun-sde-display-rcm-overlay.dtbo \
 		display/sun-sde-display-qrd-sku1-overlay.dtbo \
@@ -14,14 +17,15 @@ dtbo-$(CONFIG_ARCH_SUN) += display/sun-sde.dtbo \
 		display/sun-sde-display-cdp-nfc-overlay.dtbo \
 		display/sun-sde-display-mtp-nfc-overlay.dtbo \
 		display/sun-sde-display-cdp-v8-overlay.dtbo \
-		display/sun-sde-display-mtp-v8-overlay.dtbo \
 		display/sun-sde-display-atp-overlay.dtbo \
 		display/sun-sde-display-mtp-3-5mm-overlay.dtbo \
 		display/sun-sde-display-rcm-kiwi-overlay.dtbo \
 		display/sun-sde-display-rcm-kiwi-v8-overlay.dtbo \
 		display/sun-sde-display-rcm-v8-overlay.dtbo \
 		display/sun-sde-display-mtp-qmp1000-overlay.dtbo \
-		display/sun-sde-display-mtp-qmp1000-v8-overlay.dtbo
+		display/sun-sde-display-mtp-qmp1000-v8-overlay.dtbo \
+		display/sun-sde-display-hdk-overlay.dtbo \
+		display/sun-sde-display-cdp-no-display-overlay.dtbo
 else
 dtbo-$(CONFIG_ARCH_SUN) += display/trustedvm-sun-sde-display-cdp-overlay.dtbo \
 		display/trustedvm-sun-sde-display-mtp-overlay.dtbo \

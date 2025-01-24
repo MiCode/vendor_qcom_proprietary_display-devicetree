@@ -24,12 +24,16 @@
 		compatible = "qcom,wb-display";
 		cell-index = <0>;
 		label = "wb_display1";
+		clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
+		clock-names = "mdp_core_clk";
 	};
 
 	sde_wb2: qcom,wb-display@2 {
 		compatible = "qcom,wb-display";
 		cell-index = <1>;
 		label = "wb_display2";
+		clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
+		clock-names = "mdp_core_clk";
 	};
 
 
@@ -39,7 +43,7 @@
 		regulator-min-microvolt = <5500000>;
 		regulator-max-microvolt = <5500000>;
 		regulator-enable-ramp-delay = <233>;
-		gpio = <&pm8550_gpios 11 0>;
+		/* gpio = <&pm8550_gpios 11 0>; Xiaomi Removed MIUIROM-2139133 */
 		enable-active-high;
 		regulator-boot-on;
 		proxy-supply = <&display_panel_avdd>;
@@ -47,16 +51,29 @@
 		pinctrl-names = "default";
 	};
 
-	disp_rdump_memory: disp_rdump_region@0xd5500000 {
-		reg = <0xfc800000 0x00800000>;
+	disp_rdump_memory: disp_rdump_region@FC800000 {
+		reg = <0xFC800000 0x01400000>;
 		label = "disp_rdump_region";
 	};
 };
 
 &reserved_memory {
 	splash_memory: splash_region {
-		reg = <0x0 0xfc800000 0x0 0x02b00000>;
+		reg = <0x0 0xFC800000 0x0 0x02b00000>;
 		label = "cont_splash_region";
+	};
+	/*
+	 * Demura memory regions are to be commented out if
+	 * feature not in use.
+	 */
+	demura_memory_0: demura_region_0 {
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "demura hfc region 0";
+	};
+
+	demura_memory_1: demura_region_1 {
+		reg = <0x0 0x0 0x0 0x0>;
+		label = "demura hfc region 1";
 	};
 };
 
@@ -79,10 +96,17 @@
 		  * MDP clock nodes, no actual vote shall be added and this
 		  * change is done just to satisfy sync state requirements.
 		  */
-		 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+		 <&dispcc DISP_CC_MDSS_MDP_CLK>,
+		 /*
+		  * The esync clk RCG is only necessary here to set its parent
+		  * to the pll dsi clk, which also needs to be available at the
+		  * point that its known whether the clock will be used. After
+		  * updating the parent, this clock handle is no longer needed.
+		  */
+		 <&dispcc DISP_CC_ESYNC0_CLK_SRC>;
 	clock-names = "pll_byte_clk0", "pll_dsi_clk0",
 		      "pll_byte_clk1", "pll_dsi_clk1",
-		      "mdp_core_clk";
+		      "mdp_core_clk", "esync_clk_rcg";
 	vddio-supply = <&L12B>;
 	vci-supply = <&L13B>;
 	vdd-supply = <&L11B>;
@@ -108,18 +132,21 @@
 		  * MDP clock nodes, no actual vote shall be added and this
 		  * change is done just to satisfy sync state requirements.
 		  */
-		 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+		 <&dispcc DISP_CC_MDSS_MDP_CLK>,
+		 /*
+		  * The esync clk RCG is only necessary here to set its parent
+		  * to the pll dsi clk, which also needs to be available at the
+		  * point that its known whether the clock will be used. After
+		  * updating the parent, this clock handle is no longer needed.
+		  */
+		 <&dispcc DISP_CC_ESYNC1_CLK_SRC>;
 	clock-names = "pll_byte_clk0", "pll_dsi_clk0",
 		      "pll_byte_clk1", "pll_dsi_clk1",
-		      "mdp_core_clk";
+		      "mdp_core_clk", "esync_clk_rcg";
 	vddio-supply = <&L12B>;
 	vci-supply = <&L13B>;
 	vdd-supply = <&L11B>;
 	tvdd-supply = <&L4B>;
-};
-
-&mdss_mdp {
-	connectors = <&sde_dsi &sde_dsi1 &smmu_sde_unsec &smmu_sde_sec &sde_wb1 &sde_wb2 &sde_dp>;
 };
 
 &dsi_vtdr6130_amoled_cmd {
@@ -155,42 +182,27 @@
 	qcom,mdss-dsi-display-timings {
 		timing@0 {
 			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
+			qcom,panel-roi-alignment = <720 40 720 40 1440 40>;
 		};
 
 		timing@1 {
 			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <540 40 40 40 540 40>;
+			qcom,panel-roi-alignment = <720 40 720 40 1440 40>;
 		};
 
 		timing@2 {
 			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
+			qcom,panel-roi-alignment = <720 40 720 40 1440 40>;
 		};
 
 		timing@3 {
 			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
+			qcom,panel-roi-alignment = <720 40 720 40 1440 40>;
 		};
 
 		timing@4 {
 			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
-		};
-
-		timing@5 {
-			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
-		};
-
-		timing@6 {
-			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
-		};
-
-		timing@7 {
-			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
+			qcom,panel-roi-alignment = <720 40 720 40 1440 40>;
 		};
 	};
 };
@@ -199,17 +211,55 @@
 	qcom,mdss-dsi-display-timings {
 		timing@0 {
 			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
+			qcom,panel-roi-alignment = <720 40 720 40 1440 40>;
 		};
 
 		timing@1 {
 			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
+			qcom,panel-roi-alignment = <720 40 720 40 1440 40>;
 		};
 
 		timing@2 {
 			qcom,partial-update-enabled = "single_roi";
-			qcom,panel-roi-alignment = <720 40 40 40 720 40>;
+			qcom,panel-roi-alignment = <720 40 720 40 1440 40>;
+		};
+	};
+};
+
+&dsi_nt37801_amoled_fhd_plus_cmd {
+	qcom,mdss-dsi-display-timings {
+		timing@0 {
+			qcom,partial-update-enabled = "single_roi";
+			qcom,panel-roi-alignment = <540 40 540 40 1080 40>;
+		};
+
+		timing@1 {
+			qcom,partial-update-enabled = "single_roi";
+			qcom,panel-roi-alignment = <540 40 540 40 1080 40>;
+		};
+
+		timing@2 {
+			qcom,partial-update-enabled = "single_roi";
+			qcom,panel-roi-alignment = <540 40 540 40 1080 40>;
+		};
+
+		timing@3 {
+			qcom,partial-update-enabled = "single_roi";
+			qcom,panel-roi-alignment = <540 40 540 40 1080 40>;
+		};
+
+		timing@4 {
+			qcom,partial-update-enabled = "single_roi";
+			qcom,panel-roi-alignment = <540 40 540 40 1080 40>;
+		};
+	};
+};
+
+&dsi_nt37801_amoled_cmd_spr {
+	qcom,mdss-dsi-display-timings {
+		timing@0 {
+			qcom,partial-update-enabled = "single_roi";
+			qcom,panel-roi-alignment = <720 40 720 40 1440 40>;
 		};
 	};
 };
@@ -227,12 +277,12 @@
 		};
 
 		timing@2 { /* FHD 60FPS cmd mode*/
-			qcom,panel-roi-alignment = <540 40 540 40 540 40>;
+			qcom,panel-roi-alignment = <540 20 540 20 540 20>;
 			qcom,partial-update-enabled = "single_roi";
 		};
 
 		timing@3 { /* HD 60FPS cmd mode*/
-			qcom,panel-roi-alignment = <360 20 360 20 360 20>;
+			qcom,panel-roi-alignment = <360 40 360 40 360 40>;
 			qcom,partial-update-enabled = "single_roi";
 		};
 	};
