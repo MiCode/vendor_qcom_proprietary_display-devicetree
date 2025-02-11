@@ -1,0 +1,116 @@
+&mdss_mdp {
+	dsi_panel_c3f2_46_03_0c_hd_video: qcom,mdss_dsi_panel_c3f2_46_03_0c_hd_video {
+		qcom,mdss-dsi-panel-name =
+			"c3f2 46 03 0c video mode hd dsi panel";
+		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-h-left-border = <0>;
+		qcom,mdss-dsi-h-right-border = <0>;
+		qcom,mdss-dsi-v-top-border = <0>;
+		qcom,mdss-dsi-v-bottom-border = <0>;
+		qcom,mdss-dsi-bpp = <24>;
+		qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-underflow-color = <0xff>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,mdss-dsi-h-sync-pulse = <0>;
+		qcom,mdss-dsi-traffic-mode = "non_burst_sync_event";
+		qcom,mdss-dsi-lane-map = "lane_map_0123";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-lp11-init;
+		qcom,mdss-dsi-bl-lcd-number = <3>;
+		qcom,mdss-dsi-pan-enable-dynamic-fps;
+		qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_vfp";
+		qcom,dsi-supported-dfps-list = <120 90 60>;
+		qcom,platform-reset-gpio-always-on;
+		qcom,mdss-dsi-reset-sequence = <1 5>, <0 2>, <1 10>;
+		qcom,mdss-pan-physical-width-dimension = <703>;
+		qcom,mdss-pan-physical-height-dimension = <1600>;
+		qcom,mdss-dsi-display-timings {
+			timing@0 {
+				qcom,mdss-dsi-panel-width = <720>;
+				qcom,mdss-dsi-panel-height = <1640>;
+				qcom,mdss-dsi-h-pulse-width = <4>;
+				qcom,mdss-dsi-h-back-porch = <12>;
+				qcom,mdss-dsi-h-front-porch = <38>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-v-pulse-width = <4>;
+				qcom,mdss-dsi-v-back-porch = <26>;
+				qcom,mdss-dsi-v-front-porch = <319>;
+				qcom,mdss-dsi-panel-framerate = <120>;
+				qcom,mdss-dsi-on-command = [
+					39 01 00 00 00 00 03 51 00 00
+					39 01 00 00 00 00 02 53 2C
+					39 01 00 00 00 00 02 55 00
+
+					39 01 00 00 00 00 02 00 00
+					39 01 00 00 00 00 04 FF 80 57 01
+					39 01 00 00 00 00 02 00 80
+					39 01 00 00 00 00 03 FF 80 57
+
+					39 01 00 00 00 00 02 00 B0
+					39 01 00 00 00 00 04 CA 01 01 0C  //PWM 17khz 12bit
+					39 01 00 00 00 00 02 00 B5
+					39 01 00 00 00 00 02 CA 04   // PWM dimming
+
+					39 01 00 00 00 00 02 00 80
+					39 01 00 00 00 00 0D CA DF D7 C7 BA AF A6 9E 98 92 8D 89 85
+					39 01 00 00 00 00 02 00 90
+					39 01 00 00 00 00 0A CA FE FF 3C F5 FF 1E FA FF 66
+					39 01 00 00 00 00 02 00 A0
+					39 01 00 00 00 00 04 CA 06 06 06 //CABC dimming
+					39 01 00 00 00 00 03 5E 00 0F  //set Min CABC brightness
+
+					39 01 00 00 00 00 02 35 00
+
+					15 01 00 00 78 00 02 11 00
+					15 01 00 00 14 00 02 29 00
+				];
+				qcom,mdss-dsi-off-command = [
+					15 01 00 00 32 00 02 28 00
+					15 01 00 00 96 00 02 10 00
+					39 01 00 00 00 00 02 00 00
+					39 01 00 00 00 00 05 F7 5A A5 95 27
+				];
+				qcom,mdss-dsi-proximity-off-commands = [
+					15 01 00 00 32 00 02 28 00
+				];
+				qcom,mdss-dsi-screen-off-command = [
+					15 01 00 00 32 00 02 28 00
+					15 01 00 00 96 00 02 10 00
+				];
+				mi,mdss-dsi-cabc-ui-on-command = [
+					39 01 00 00 00 00 02 55 01
+				];
+				mi,mdss-dsi-cabc-still-on-command =[
+					39 01 00 00 00 00 02 55 02
+				];
+				mi,mdss-dsi-cabc-movie-on-command = [
+					39 01 00 00 00 00 02 55 03
+				];
+				mi,mdss-dsi-cabc-off-command =[
+					39 01 00 00 00 00 02 55 00
+				];
+
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
+				mi,mdss-dsi-cabc-ui-on-command-state = "dsi_lp_mode";
+				mi,mdss-dsi-cabc-still-on-command-state = "dsi_lp_mode";
+				mi,mdss-dsi-cabc-movie-on-command-state = "dsi_lp_mode";
+				mi,mdss-dsi-cabc-off-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-proximity-off-commands-state = "dsi_lp_mode";
+				qcom,mdss-dsi-screen-off-command-state = "dsi_lp_mode";
+			};
+		};
+	};
+};
