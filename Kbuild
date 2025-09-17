@@ -1,0 +1,74 @@
+ifneq ($(CONFIG_ARCH_QTI_VM), y)
+dtbo-$(CONFIG_ARCH_KALAMA) += display/kalama-sde.dtbo \
+		display/kalama-sde-display-rumi-overlay.dtbo \
+		display/kalama-sde-display-cdp-overlay.dtbo \
+		display/kalama-sde-display-cdp-wsa883x-overlay.dtbo \
+		display/kalama-sde-display-mtp-overlay.dtbo \
+		display/kalama-sde-display-qrd-overlay.dtbo \
+		display/kalama-sde-display-mtp-nfc-overlay.dtbo \
+		display/kalama-sde-display-rcm-overlay.dtbo \
+		display/kalama-sde-display-cdp-nfc-overlay.dtbo \
+		display/kalama-sde-display-atp-overlay.dtbo
+else
+dtbo-$(CONFIG_ARCH_KALAMA) += display/trustedvm-kalama-sde-display-mtp-overlay.dtbo \
+                  display/trustedvm-kalama-sde-display-mtp-nfc-overlay.dtbo \
+                  display/trustedvm-kalama-sde-display-cdp-nfc-overlay.dtbo \
+		  display/trustedvm-kalama-sde-display-cdp-overlay.dtbo \
+		  display/trustedvm-kalama-sde-display-cdp-wsa883x-overlay.dtbo \
+		  display/trustedvm-kalama-sde-display-rumi-overlay.dtbo \
+		  display/trustedvm-kalama-sde-display-qrd-overlay.dtbo \
+		  display/trustedvm-kalama-sde-display-atp-overlay.dtbo
+endif
+
+dtbo-$(CONFIG_ARCH_BENGAL) += display/bengal-sde.dtbo \
+			display/bengal-sde-display-idp-overlay.dtbo \
+			display/bengal-sde-display-qrd-overlay.dtbo \
+			display/bengal-sde-display-idp-nopmi-overlay.dtbo
+
+ifeq ($(CONFIG_ARCH_SA8155), y)
+dtbo-y += display/sa8155-adp-star-display.dtbo
+endif
+
+ifneq ($(CONFIG_ARCH_QTI_VM), y)
+dtbo-$(CONFIG_ARCH_WAIPIO) += display/waipio-sde.dtbo \
+		display/waipio-sde-display-mtp-overlay.dtbo \
+		display/waipio-sde-display-cphy-mtp-overlay.dtbo \
+		display/waipio-sde-display-cdp-overlay.dtbo \
+		display/waipio-sde-display-qrd-overlay.dtbo \
+		display/waipio-sde-display-hdk-overlay.dtbo \
+		display/waipio-sde-display-waipio-lemur-cdp-overlay.dtbo \
+		display/waipio-sde-display-waipio-lemur-mtp-overlay.dtbo \
+		display/waipio-sde-display-rumi-overlay.dtbo
+else
+dtbo-$(CONFIG_ARCH_WAIPIO) += display/trustedvm-waipio-sde-display-mtp-overlay.dtbo \
+		display/trustedvm-waipio-sde-display-cdp-overlay.dtbo \
+		display/trustedvm-waipio-sde-display-rumi-overlay.dtbo \
+		display/trustedvm-waipio-sde-display-qrd-overlay.dtbo
+endif
+
+dtbo-$(CONFIG_ARCH_KHAJE) += display/khaje-sde.dtbo \
+		display/khaje-sde-display-idp-overlay.dtbo \
+		display/khaje-sde-display-qrd-overlay.dtbo \
+		display/khaje-sde-display-qrd-hvdcp3p5-overlay.dtbo \
+		display/khaje-sde-display-idps-90hz-overlay.dtbo \
+		display/khaje-sde-display-atp-overlay.dtbo \
+		display/khaje-sde-display-idp-nopmi-overlay.dtbo \
+		display/creek-sde-display-idp-nopmi-overlay.dtbo \
+		display/khaje-sde-display-qrd-nopmi-overlay.dtbo \
+		display/khaje-sde-display-qrd-nowcd9375-overlay.dtbo
+
+dtbo-$(CONFIG_ARCH_MONACO) += display/monaco-sde.dtbo \
+		display/monaco-sde-display-idp-overlay.dtbo \
+		display/monaco-sde-display-wdp-overlay.dtbo
+
+dtbo-$(CONFIG_ARCH_TRINKET) += display/trinket-sde.dtbo \
+		display/trinket-sde-display-iot-idp-overlay.dtbo \
+		display/trinket-sde-display-iot-dp-idp-overlay.dtbo \
+		display/trinket-sde-display-iot-dp-usbc-idp-overlay.dtbo
+
+dtbo-$(CONFIG_ARCH_SCUBA) += display/scuba-iot-sde.dtbo \
+                display/scuba-iot-sde-display-idp-overlay.dtbo
+
+always-y    := $(dtb-y) $(dtbo-y)
+subdir-y    := $(dts-dirs)
+clean-files    := *.dtb *.dtbo

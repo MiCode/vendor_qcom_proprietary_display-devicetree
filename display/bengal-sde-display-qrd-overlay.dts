@@ -1,0 +1,10 @@
+/dts-v1/;
+/plugin/;
+
+#include "bengal-sde-display-qrd.dtsi"
+/ {
+	model = "Qualcomm Technologies, Inc. Bengal QRD";
+	compatible = "qcom,bengal-qrd", "qcom,bengal", "qcom,qrd";
+	qcom,msm-id = <417 0x10000>, <444 0x10000>, <469 0x10000>, <469 0x0>, <470 0x10000>, <470 0x0>;
+	qcom,board-id = <0x1000B 0>;
+};

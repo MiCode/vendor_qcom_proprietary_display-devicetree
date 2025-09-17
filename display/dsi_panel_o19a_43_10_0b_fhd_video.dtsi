@@ -1,0 +1,138 @@
+&mdss_mdp {
+	dsi_panel_o19a_43_10_0b_fhd_video: qcom,mdss_dsi_panel_o19a_43_10_0b_fhd_video {
+		qcom,mdss-dsi-panel-name =
+			"o19a 43 10 0b video mode fhd dsi panel";
+		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-bpp = <24>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,mdss-dsi-traffic-mode = "burst_mode";
+		qcom,mdss-dsi-lane-map = "lane_map_0123";
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-lp11-init;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-bl-inverted-dbv;
+		qcom,mdss-dsi-bl-lcd-number = <2>;
+		qcom,mdss-dsi-reset-sequence = <1 10>, <0 15>, <1 20>;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,ulps-enabled;
+		qcom,suspend-ulps-enabled;
+		qcom,adjust-timer-wakeup-ms = <1>;
+		qcom,mdss-brightness-init-level = <307>;
+		qcom,mdss-pan-physical-width-dimension = <74>;
+		qcom,mdss-pan-physical-height-dimension = <159>;
+		qcom,mdss-dsi-pan-enable-dynamic-fps;
+		qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_vfp";
+		qcom,dsi-supported-dfps-list = <120 144 90 60 50 48 45 40 30>;
+		mi,video-mode-multi-timing;
+		qcom,mdss-dsi-display-timings {
+			timing@120 {
+				qcom,mdss-dsi-panel-framerate = <120>;
+				qcom,mdss-dsi-h-front-porch = <68>;
+				qcom,mdss-dsi-v-front-porch = <485>;
+				mi,mdss-dsi-supported-fps-list = <120 90 60 50 48 45 40 30>;
+				qcom,mdss-dsi-on-command = [
+					39 01 00 00 00 00 02 B0 04
+					39 01 00 00 00 00 02 D6 00
+					39 01 00 00 00 00 0A C0 00 4a 01 2c 14 09 24 01 CA
+					39 01 00 00 00 00 1F C2 00 10 49 02 02 10 03 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 50 44
+					39 01 00 00 00 00 04 F0 C1 03 81
+					39 01 00 00 00 00 04 F0 C1 2E 0a
+					39 01 00 00 00 00 04 F0 C1 2F 38
+					39 01 00 00 00 00 04 F0 C1 30 0d
+					39 01 00 00 00 00 04 F0 C1 31 01
+					39 01 00 00 00 00 04 F0 C1 32 12
+					39 01 00 00 00 00 04 F0 C1 33 94
+					39 01 00 00 00 00 04 F0 C1 34 18
+					39 01 00 00 00 00 04 F0 C1 35 85
+					39 01 00 00 00 00 04 F0 C1 36 1b
+					39 01 00 00 00 00 04 F0 C1 37 4e
+					39 01 00 00 00 00 04 F0 C1 38 1c
+					39 01 00 00 00 00 04 F0 C1 39 cb
+					39 01 00 00 00 00 04 F0 C1 57 44
+					39 01 00 00 00 00 04 F0 C4 58 32
+
+					39 01 00 00 00 00 0B D7 21 10 52 52 00 4a 00 0c 00 4a
+					39 01 00 00 00 00 0D DE 00 00 00 0f ff 00 00 00 00 10 00 4a
+					39 01 00 00 00 00 1D EA 01 0e 0b 00 0C 80 00 00 09 00 01 70 00 00 00 00 00 00 00 00 04 c2 00 12 00 4a 04 a0
+					39 01 00 00 00 00 0B EC 04 80 00 90 C4 0C 80 00 02 3a
+					39 01 00 00 00 00 1E EF 00 90 1F 03 70 00 00 00 00 10 11 0C 00 00 00 00 00 00 00 00 00 00 90 1F 03 70 10 11 0C
+					39 01 00 00 00 00 17 D9 42 99 26 ED 0D CE 16 6C 16 6C 00 14 00 14 00 14 01 0C 00 00 01 00
+
+					39 01 00 00 00 00 08 B8 1f 51 00 be 00 00 02
+					39 01 00 00 00 00 08 B9 A5 6f 00 be 00 00 14
+					39 01 00 00 00 00 08 BA 57 5d 00 be 00 00 0a
+
+					39 01 00 00 00 00 24 CE 77 04 08 10 22 32 43 52 64 72 7e 8a 98 a8 bf d8 ef ff 01 7A 0f 0f 00 43 69 5a 40 43 00 00 00 64 fa 00 00
+					39 01 00 00 00 00 02 B7 11
+					39 01 00 00 00 00 04 BE 00 00 85
+					39 01 00 00 00 00 02 53 2C
+					39 01 00 00 00 00 02 55 00
+					39 01 00 00 00 00 02 CB 20
+
+					05 01 00 00 78 00 01 11
+					05 01 00 00 0A 00 01 29
+				];
+				#include "dsi_panel_o19a_43_10_0b_fhd_video_common.dtsi"
+			};
+			timing@144 {
+				qcom,mdss-dsi-panel-framerate = <144>;
+				qcom,mdss-dsi-h-front-porch = <68>;
+				qcom,mdss-dsi-v-front-porch = <10>;
+				mi,mdss-dsi-supported-fps-list = <144>;
+				qcom,mdss-dsi-on-command = [
+					39 01 00 00 00 00 02 B0 04
+					39 01 00 00 00 00 02 D6 00
+					39 01 00 00 00 00 0A C0 00 4a 01 2c 14 09 24 01 CA
+					39 01 00 00 00 00 1F C2 00 10 49 02 02 10 03 05 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 50 44
+					39 01 00 00 00 00 04 F0 C1 03 81
+					39 01 00 00 00 00 04 F0 C1 2E 0a
+					39 01 00 00 00 00 04 F0 C1 2F 38
+					39 01 00 00 00 00 04 F0 C1 30 0d
+					39 01 00 00 00 00 04 F0 C1 31 01
+					39 01 00 00 00 00 04 F0 C1 32 12
+					39 01 00 00 00 00 04 F0 C1 33 94
+					39 01 00 00 00 00 04 F0 C1 34 18
+					39 01 00 00 00 00 04 F0 C1 35 85
+					39 01 00 00 00 00 04 F0 C1 36 1b
+					39 01 00 00 00 00 04 F0 C1 37 4e
+					39 01 00 00 00 00 04 F0 C1 38 1c
+					39 01 00 00 00 00 04 F0 C1 39 cb
+					39 01 00 00 00 00 04 F0 C1 57 44
+					39 01 00 00 00 00 04 F0 C4 58 32
+
+					39 01 00 00 00 00 0B D7 21 10 52 52 00 4a 00 0c 00 4a
+					39 01 00 00 00 00 0D DE 00 00 00 0f ff 00 00 00 00 10 00 4a
+					39 01 00 00 00 00 1D EA 01 0e 0b 00 0C 80 00 00 09 00 01 70 00 00 00 00 00 00 00 00 04 c2 00 12 00 4a 04 a0
+					39 01 00 00 00 00 0B EC 04 80 00 90 C4 0C 80 00 02 3a
+					39 01 00 00 00 00 1E EF 00 90 1F 03 70 00 00 00 00 10 11 0C 00 00 00 00 00 00 00 00 00 00 90 1F 03 70 10 11 0C
+					39 01 00 00 00 00 17 D9 42 99 26 ED 0D CE 16 6C 16 6C 00 14 00 14 00 14 01 0C 00 00 01 00
+
+					39 01 00 00 00 00 08 B8 1f 51 00 be 00 00 02
+					39 01 00 00 00 00 08 B9 A5 6f 00 be 00 00 14
+					39 01 00 00 00 00 08 BA 57 5d 00 be 00 00 0a
+
+					39 01 00 00 00 00 24 CE 77 04 08 10 22 32 43 52 64 72 7e 8a 98 a8 bf d8 ef ff 01 7A 0f 0f 00 43 69 5a 40 43 00 00 00 64 fa 00 00
+					39 01 00 00 00 00 02 B7 11
+					39 01 00 00 00 00 04 BE 00 00 85
+					39 01 00 00 00 00 02 53 2C
+					39 01 00 00 00 00 02 55 00
+					39 01 00 00 00 00 02 CB 20
+
+					05 01 00 00 78 00 01 11
+					05 01 00 00 0A 00 01 29
+				];
+				#include "dsi_panel_o19a_43_10_0b_fhd_video_common.dtsi"
+			};
+		};
+	};
+};
