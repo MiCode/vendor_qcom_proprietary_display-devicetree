@@ -1,0 +1,78 @@
+&mdss_mdp {
+	dsi_p17_35_0F_0b_amoled_dsc_vid: qcom,mdss_dsi_p17_35_0F_0b_amoled_dsc_vid {
+		qcom,mdss-dsi-panel-name =
+			"dsi p17 35 0F 0b amoled video mode dsi panel with DSC";
+		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+		qcom,mdss-dsi-panel-physical-type = "oled";
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-bpp = <30>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,mdss-dsi-traffic-mode = "burst_mode";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-pan-physical-width-dimension = <708>;
+		qcom,mdss-pan-physical-height-dimension = <1568>;
+		qcom,mdss-dsi-lp11-init;
+		qcom,mdss-dsi-reset-sequence = <1 10>, <0 10>, <1 40>;
+		qcom,mdss-brightness-init-level = <307>;
+		qcom,adjust-timer-wakeup-ms = <1>;
+
+		qcom,mdss-dsi-pan-enable-dynamic-fps;
+		qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode_vfp";
+		qcom,dsi-supported-dfps-list = <120 90 60 30>;
+
+		mi,video-mode-multi-timing;
+		mi,esd-err-irq-gpio = <&tlmm 127 0x2008>;
+		mi,esd-err-irq-gpio-flag = <0x2008>;
+		mi,local-hbm-enabled;
+		mi,local-hbm-ui-ready-delay-num-frame = <1>;
+		mi,need-fod-animal-in-normal-enabled;
+		mi,need_aod_enter_set_backlight;
+		mi,need_aod_exit_set_backlight;
+		mi,doze-hbm-dbv-level = <214>;
+		mi,doze-lbm-dbv-level = <20>;
+		mi,local-hbm-white-1000nit-update-flag;
+		mi,local-hbm-white-110nit-update-flag;
+		mi,panel-id = <0x00503137 0x00350F00>;
+		mi,max-brightness-clone = <16383>;
+		mi,normal-max-brightness-clone = <8191>;
+		mi,local-hbm-alpha-ctrl-aa-area = <1>;
+
+		qcom,mdss-dsi-display-timings {
+			timing@120 {
+				qcom,mdss-dsi-panel-framerate = <120>;
+				qcom,mdss-dsi-h-front-porch = <96>;
+				qcom,mdss-dsi-v-front-porch = <112>;
+				qcom,mdss-dsi-panel-clockrate = <1110000000>;
+				mi,mdss-dsi-supported-fps-list = <120 60>;
+				#include "dsi-panel-p17-35-0F-0b-amoled-dsc-vid-common.dtsi"
+			};
+			timing@90 {
+				qcom,mdss-dsi-panel-framerate = <90>;
+				qcom,mdss-dsi-h-front-porch = <96>;
+				qcom,mdss-dsi-v-front-porch = <944>;
+				qcom,mdss-dsi-panel-clockrate = <1110000000>;
+				mi,mdss-dsi-supported-fps-list = <90>;
+				#include "dsi-panel-p17-35-0F-0b-amoled-dsc-vid-common.dtsi"
+			};
+			timing@30 {
+				qcom,mdss-dsi-panel-framerate = <30>;
+				qcom,mdss-dsi-h-front-porch = <1536>;
+				qcom,mdss-dsi-v-front-porch = <112>;
+				qcom,mdss-dsi-panel-clockrate = <1110000000>;
+				mi,mdss-dsi-supported-fps-list = <30>;
+				#include "dsi-panel-p17-35-0F-0b-amoled-dsc-vid-common.dtsi"
+			};
+		};
+	};
+};

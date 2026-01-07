@@ -1,0 +1,116 @@
+/*TOUCH start*/
+&soc {
+    xiaomi_touch {
+        status = "okay";
+        compatible = "xiaomi-touch";
+        touch,name = "xiaomi-touch";
+    };
+};
+
+&qupv3_se9_spi {
+        status = "ok";
+        qcom,xfer-timeout-offset = <2500>;
+
+        touch@0 {
+                compatible = "goodix,gt9916k","goodix,brl-d","focaltech,ft3683g";
+                spi-max-frequency = <12000000>;
+                reg = <0>; //Same as CS ID
+                status = "ok";
+                interrupt-parent = <&tlmm>;
+                interrupts = <65 0x02>;
+                pinctrl-names = "pmx_ts_active","pmx_ts_suspend","pmx_ts_release";
+                pinctrl-0 = <&ts_int_active &ts_reset_active &ts_iovdd>;
+                pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+                pinctrl-2 = <&ts_release>;
+
+                /* goodix config */
+                goodix,avdd-name = "avdd";
+                avdd-supply = <&L7E>;
+
+                goodix,sleep-enable = <1>;
+                goodix,iovdd-gpio = <&tlmm 38 0x00>;
+                goodix,reset-gpio = <&tlmm 131 0x01>;
+                goodix,irq-gpio = <&tlmm 65 0x02>;
+                goodix,irq-flags = <2>; /* 1:trigger rising, 2:trigger falling;*/
+                goodix,panel-max-x = <17280>;
+                goodix,panel-max-y = <38272>;
+                goodix,panel-max-w = <1>;
+                panel = <&dsi_p17_41_02_0a_amoled_dsc_vid &dsi_p17_35_0F_0b_amoled_dsc_vid &dsi_p17_41_0F_0c_amoled_dsc_vid>;
+
+                /* focaltech config */
+                focaltech,avdd-name = "avdd";
+                focaltech,iovdd-gpio = <&tlmm 38 0x00>;
+                focaltech,reset-gpio = <&tlmm 131 0x01>;
+                focaltech,irq-gpio = <&tlmm 65 0x02>;
+                focaltech,irq-flags = <2>; /* 1:trigger rising, 2:trigger falling;*/
+                focaltech,max-touch-number = <10>;
+                focaltech,display-coords =  <0 0 1079 2391>;
+
+                /* optional properties */
+                //goodix,panel-max-p = <4096>; /* max pressure that pen device supported */
+                //goodix,pen-enable; /* support active stylus device */
+                goodix,firmware-name = "goodix_firmware.bin";
+                goodix,config-name = "goodix_cfg_group.bin";
+                goodix,3rd-firmware-name = "goodix_3rd_firmware.bin";
+                goodix,3rd-config-name = "goodix_3rd_cfg_group.bin";
+
+                mi_tp,game-mode-array =
+                                <1 0 0 0 0>;  /* Touch_Game_Mode MAX MIN DEF SET GET */
+                mi_tp,active-mode-array =
+                                <1 0 0 0 0>;  /* Touch_Active_MODE MAX MIN DEF SET GET */
+                mi_tp,up-threshold-array =
+                                <4 0 2 0 0>;  /* Touch_UP_THRESHOLD MAX MIN DEF SET GET */
+                mi_tp,tolerance-array =
+                                <4 0 2 0 0>;  /* Touch_Tolerance MAX MIN DEF SET GET */
+                mi_tp,panel-orien-array =
+                                <3 0 0 0 0>;  /* Touch_Panel_Orientation MAX MIN DEF SET GET */
+                mi_tp,edge-filter-array =
+                                <3 0 2 2 2>;  /* Touch_Edge_Filter MAX MIN DEF SET GET */
+                mi_tp,report-rate-array =
+                                <3 0 0 0 0>;  /* MAX MIN DEF SET GET        */
+                mi_tp,cornerfilter-area-step-array = <0 100 170 250>; /* step 0 to step 3 */
+                mi_tp,cornerzone-filter-hor1-array =
+                        /* B0:Type, B1:pos, B2:x0, B3:y0, B4:x1, B5:y1, B6:reserved, B7: reserved */
+                                <0 0 0 0 170 170 0 0>,
+                                <0 1 0 0 0 0 0 0>,
+                                <0 2 0 2229 170 2399 0 0>,
+                                <0 3 0 0 0 0 0 0>;
+                mi_tp,cornerzone-filter-hor2-array =
+                        /* B0:Type, B1:pos, B2:x0, B3:y0, B4:x1, B5:y1, B6:reserved, B7: reserved */
+                                <0 0 0 0 0 0 0 0>,
+                                <0 1 909 0 1079 170 0 0>,
+                                <0 2 0 0 0 0 0 0>,
+                                <0 3 909 2229 1079 2399 0 0>;
+                mi_tp,cornerzone-filter-ver-array =
+                        /* B0:Type, B1:pos, B2:x0, B3:y0, B4:x1, B5:y1, B6:reserved, B7: reserved */
+                                <0 0 0 0 0 0 0 0>,
+                                <0 1 0 0 0 0 0 0>,
+                                <0 2 0 2099 150 2399 0 0>,
+                                <0 3 929 2099 1079 2399 0 0>;
+                mi_tp,deadzone-filter-hor-array =
+                        /* B0:Type, B1:pos, B2:x0, B3:y0, B4:x1, B5:y1, B6:reserved, B7: reserved */
+                                <2 0 0 0 1079 5 0 0>,
+                                <2 1 0 2394 1079 2399 0 0>,
+                                <2 2 0 0 0 0 0 0>,
+                                <2 3 0 0 0 0 0 0>;
+                mi_tp,deadzone-filter-ver-array =
+                        /* B0:Type, B1:pos, B2:x0, B3:y0, B4:x1, B5:y1, B6:reserved, B7: reserved */
+                                <2 0 0 0 0 0 0 0>,
+                                <2 1 0 0 0 0 0 0>,
+                                <2 2 0 0 5 2399 0 0>,
+                                <2 3 1074 0 1079 2399 0 0>;
+                mi_tp,edgezone-filter-hor-array =
+                        /* B0:Type, B1:pos, B2:x0, B3:y0, B4:x1, B5:y1, B6:reserved, B7: reserved */
+                                <1 0 0 0 1079 40 0 0>,
+                                <1 1 0 2359 1079 2399 0 0>,
+                                <1 2 0 0 40 2399 0 0>,
+                                <1 3 1039 0 1079 2399 0 0>;
+                mi_tp,edgezone-filter-ver-array =
+                        /* B0:Type, B1:pos, B2:x0, B3:y0, B4:x1, B5:y1, B6:reserved, B7: reserved */
+                                <1 0 0 0 0 0 0 0>,
+                                <1 1 0 0 0 0 0 0>,
+                                <1 2 0 0 40 2399 0 0>,
+                                <1 3 1039 0 1079 2399 0 0>;
+        };
+};
+/*TOUCH end*/
