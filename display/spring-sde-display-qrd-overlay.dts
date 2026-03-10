@@ -1,0 +1,11 @@
+/dts-v1/;
+/plugin/;
+
+#include "spring-sde-display-qrd.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Spring QRD";
+	compatible = "qcom,blair-qrd", "qcom,blair", "qcom,qrd";
+	qcom,msm-id = <507 0x10000>, <578 0x10000>;
+	qcom,board-id = <0x2000B 0>;
+};

@@ -1,0 +1,71 @@
+#include "blair-sde-display.dtsi"
+#include "touchscreen.dtsi"
+/*
+&pmr735a_gpios {
+	pmx_sde: pmx_sde {
+		sde_dsi_default: sde_dsi_default {
+			pins = "gpio2";
+			function = "func1";
+			qcom,drive-strength = <2>;
+			power-source = <1>;
+			bias-disable;
+			output-low;
+		};
+	};
+};
+*/
+&dsi_panel_pwr_supply_amoled {
+	qcom,panel-supply-entry@0 {
+		qcom,supply-min-voltage = <1860000>;
+	};
+};
+
+&dsi_panel_o19_dummy_lcd {
+	//qcom,panel-supply-entries = <&dsi_panel_pwr_supply_sim>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
+	qcom,platform-reset-gpio = <&tlmm 33 0>;
+	qcom,lcm-enp-gpio = <&tlmm 93 1>;
+	qcom,lcm-enn-gpio = <&tlmm 49 1>;
+};
+
+&dsi_panel_o19_36_03_0b_fhd_video {
+	//qcom,panel-supply-entries = <&dsi_panel_pwr_supply_sim>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
+	qcom,platform-reset-gpio = <&tlmm 33 0>;
+	qcom,mdss-dsi-te-pin-select = <1>;
+	qcom,esd-err-irq-gpio = <&tlmm 23 0x2002>;
+	qcom,lcm-enp-gpio = <&tlmm 93 0>;
+	qcom,lcm-enn-gpio = <&tlmm 49 0>;
+};
+
+&dsi_panel_o19_42_02_0a_fhd_video {
+	//qcom,panel-supply-entries = <&dsi_panel_pwr_supply_sim>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
+	qcom,platform-reset-gpio = <&tlmm 33 0>;
+	qcom,mdss-dsi-te-pin-select = <1>;
+	qcom,esd-err-irq-gpio = <&tlmm 23 0x2008>;
+	qcom,lcm-enp-gpio = <&tlmm 93 0>;
+	qcom,lcm-enn-gpio = <&tlmm 49 0>;
+	qcom,mdss-dsi-clk-strength = <0xEE>;
+};
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_panel_o19_42_02_0a_fhd_video &dsi_panel_o19_36_03_0b_fhd_video &dsi_panel_o19_dummy_lcd>;
+};
+
+&qupv3_se8_i2c {
+	status = "okay";
+	lcd_bias@3e {
+        compatible = "lct,lcd_bias";
+		reg = <0x3e>;
+	};
+};
