@@ -1,0 +1,200 @@
+#include "pineapple-sde-display.dtsi"
+#include "dsi-panel-n18-38-0c-0a-prim-dsc-cmd.dtsi"
+#include "dsi-panel-n18-42-02-0a-sec-dsc-cmd.dtsi"
+#include "dsi-panel-sec-sim-video.dtsi"
+#include "dsi-panel-pri-sim-video.dtsi"
+
+&soc {
+	dsi_panel_pwr_supply_prim_N18: dsi_panel_pwr_supply_prim_N18 {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-post-off-sleep = <1>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1900000>;
+			qcom,supply-max-voltage = <1900000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-post-off-sleep = <1>;
+		};
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "vddd";
+			qcom,supply-min-voltage = <1100000>;
+			qcom,supply-max-voltage = <1100000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <10>;
+			qcom,supply-post-off-sleep = <1>;
+		};
+	};
+
+	dsi_panel_pwr_supply_sec_N18: dsi_panel_pwr_supply_sec_N18 {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "sec-vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-post-off-sleep = <1>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "sec-vddd";
+			qcom,supply-min-voltage = <1200000>;
+			qcom,supply-max-voltage = <1200000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-post-off-sleep = <1>;
+		};
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "sec-vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <15>;
+			qcom,supply-post-off-sleep = <1>;
+		};
+	};
+};
+
+&apps_rsc_drv2 {
+	rpmh-regulator-ldoe1 {
+		compatible = "qcom,rpmh-vrm-regulator";
+		qcom,resource-name = "ldoe1";
+		qcom,regulator-type = "pmic5-ldo";
+		qcom,supported-modes =
+			<RPMH_REGULATOR_MODE_LPM
+			 RPMH_REGULATOR_MODE_HPM>;
+		qcom,mode-threshold-currents = <0 30000>;
+		L1E: pm_v6e_l1: regulator-pm-v6e-l1 {
+			regulator-name = "pm_v6e_l1";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+			regulator-min-microvolt = <1200000>;
+			regulator-max-microvolt = <1200000>;
+			qcom,init-voltage = <1200000>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
+		};
+	};
+};
+
+&L10B {
+	regulator-min-microvolt = <1900000>;
+	regulator-max-microvolt = <1900000>;
+	qcom,init-voltage = <1900000>;
+};
+
+&L11B {
+	regulator-min-microvolt = <1100000>;
+	regulator-max-microvolt = <1100000>;
+	qcom,init-voltage = <1100000>;
+};
+
+&L3N {
+	regulator-min-microvolt = <3000000>;
+	regulator-max-microvolt = <3000000>;
+	qcom,init-voltage = <3000000>;
+};
+
+&L6N {
+	regulator-min-microvolt = <1800000>;
+	regulator-max-microvolt = <1800000>;
+	qcom,init-voltage = <1800000>;
+};
+
+&dsi_sec_sim_vid {
+	qcom,dsi-select-sec-clocks = "pll_byte_clk1", "pll_dsi_clk1";
+	qcom,mdss-dsi-display-timings {
+		timing@0 {
+			/* 60hz */
+			qcom,mdss-dsi-panel-phy-timings = [00 23 09 09 1A 24 09
+				09 09 02 04 00 1D 0E];
+			qcom,display-topology = <1 0 1>;
+			qcom,default-topology-index = <0>;
+		};
+	};
+};
+
+&dsi_sec_sim_vid {
+	qcom,panel-sec-supply-entries = <&dsi_panel_pwr_supply_sec_N18>;
+	qcom,mdss-dsi-sec-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-clk-strength = <0xFF>;
+	qcom,mdss-dsi-bl-min-level = <4>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <8191>;
+	qcom,mdss-dsi-bl-inverted-dbv;
+	qcom,platform-sec-reset-gpio = <&tlmm 128 0>;
+};
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_pri_sim_vid>;
+	vddd-supply = <&L11B>;
+	vddio-supply = <&L10B>;
+	vci-supply = <&L13B>;
+};
+
+&sde_dsi1 {
+	qcom,dsi-default-panel = <&dsi_sec_sim_vid>;
+	sec-vddd-supply = <&L1E>;
+	sec-vddio-supply = <&L6N>;
+	sec-vci-supply = <&L3N>;
+};
+
+&mdss_mdp {
+	connectors = <&sde_dsi &sde_dsi1 &smmu_sde_unsec &sde_wb1 &sde_wb2 &sde_rscc &sde_dp>;
+};
+
+&sde_dp {
+	qcom,max-lclk-frequency-khz = <540000>;
+	status = "ok";
+};
+
+&qupv3_se4_spi {
+	synaptics_tcm@0 {
+		panel = <&dsi_n18_42_02_0a_sec_dsc_cmd>;
+	};
+};
+
+&qupv3_se8_spi {
+	fts-pri@0 {
+		panel = <&dsi_n18_38_0c_0a_prim_dsc_cmd>;
+	};
+};
+
+&soc {
+	charge_screen: charge-screen {
+		panel  = <&dsi_n18_38_0c_0a_prim_dsc_cmd
+			&dsi_pri_sim_vid>;
+		panel1 = <&dsi_n18_42_02_0a_sec_dsc_cmd
+			&dsi_sec_sim_vid>;
+	};
+};
+
+&soc {
+	thermal_screen: thermal-screen {
+		panel = <&dsi_n18_38_0c_0a_prim_dsc_cmd
+			&dsi_pri_sim_vid>;
+		panel1 = <&dsi_n18_42_02_0a_sec_dsc_cmd
+			&dsi_sec_sim_vid>;
+	};
+	fingerprint_screen: fingerprint-screen {
+		panel = <&dsi_n18_38_0c_0a_prim_dsc_cmd
+			&dsi_pri_sim_vid>;
+		panel1 = <&dsi_n18_42_02_0a_sec_dsc_cmd
+                        &dsi_sec_sim_vid>;
+	};
+};

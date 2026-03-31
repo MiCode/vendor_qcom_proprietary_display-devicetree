@@ -1,0 +1,39 @@
+mi,mdss-dsi-cabcuion-command = [
+    15 00 00 00 00 00 02 FF 10
+    15 00 00 00 00 00 02 55 01
+];
+mi,mdss-dsi-cabcstillon-command = [
+    15 00 00 00 00 00 02 FF 10
+    15 00 00 00 00 00 02 55 02
+];
+mi,mdss-dsi-cabcmovieon-command = [
+    15 00 00 00 00 00 02 FF 10
+    15 00 00 00 00 00 02 55 03
+];
+mi,mdss-dsi-cabcoff-command = [
+    15 00 00 00 00 00 02 FF 10
+    15 00 00 00 00 00 02 55 00
+];
+mi,mdss-dsi-dimmingon-command = [
+    /* ESD Detection Signal */
+    39 00 00 40 00 00 02 FF 27
+    39 00 00 00 00 00 02 D1 28
+    /* CABC DIMMING ON */
+    15 00 00 00 00 00 02 FF 10
+    15 00 00 00 00 00 02 53 2C
+];
+
+mi,mdss-dsi-cabcuion-command-state = "dsi_lp_mode";
+mi,mdss-dsi-cabcstillon-command-state = "dsi_lp_mode";
+mi,mdss-dsi-cabcmovieon-command-state = "dsi_lp_mode";
+mi,mdss-dsi-cabcoff-command-state = "dsi_lp_mode";
+mi,mdss-dsi-dimmingon-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-disable-insert-black-command = [
+    15 00 00 00 00 00 02 FF 10
+    39 00 00 00 00 00 02 13 00];
+mi,mdss-dsi-disable-insert-black-command-state = "dsi_lp_mode";
+mi,mdss-dsi-insert-black-screen-command = [
+    15 00 00 00 00 00 02 FF 10
+    39 00 00 00 00 00 02 22 00];
+mi,mdss-dsi-insert-black-screen-command-state = "dsi_lp_mode";

@@ -1,0 +1,42 @@
+qcom,mdss-dsi-panel-width = <1600>; // dual dsi is 3200/2
+qcom,mdss-dsi-panel-height = <2136>;
+qcom,mdss-dsi-h-pulse-width = <16>;
+qcom,mdss-dsi-h-back-porch = <16>;
+qcom,mdss-dsi-h-sync-skew = <0>;
+qcom,mdss-dsi-v-pulse-width = <2>;
+qcom,mdss-dsi-v-back-porch = <146>;
+qcom,mdss-dsi-v-front-porch = <26>;
+qcom,mdss-dsi-h-left-border = <0>;
+qcom,mdss-dsi-h-right-border = <0>;
+qcom,mdss-dsi-v-top-border = <0>;
+qcom,mdss-dsi-v-bottom-border = <0>;
+qcom,mdss-dsi-panel-clockrate = <1189190000>;
+
+qcom,mdss-dsi-off-command = [
+    /*power off*/
+    05 00 00 00 14 00 01 28
+    05 00 00 00 64 00 01 10
+    05 00 00 00 00 00 01 4F
+];
+
+qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
+qcom,mdss-dsi-timing-switch-video-command-state = "dsi_hs_mode";
+
+//dsc
+qcom,compression-mode = "dsc";
+qcom,mdss-dsc-version = <0x11>;
+qcom,mdss-dsc-scr-version = <0x0>;
+qcom,mdss-dsc-slice-height = <24>;
+qcom,mdss-dsc-slice-width = <800>;
+qcom,mdss-dsc-slice-per-pkt = <1>;
+qcom,mdss-dsc-bit-per-component = <10>;
+qcom,mdss-dsc-bit-per-pixel = <8>;
+qcom,mdss-dsc-block-prediction-enable;
+
+mi,mdss-dsi-dispparam-pen-clear-command = [
+    39 00 00 40 00 00 02 FF 10
+    39 00 00 40 00 00 02 FB 01
+    39 00 00 00 00 00 02 B2 80
+];
+mi,mdss-dsi-dispparam-pen-clear-command-state = "dsi_lp_mode";
