@@ -1,0 +1,12 @@
+#include "trinket-sde-display-iot-idp.dtsi"
+
+&sde_dp {
+	status = "okay";
+	qcom,dp-hpd-gpio = <&tlmm 100 0>;
+	qcom,dp-low-power-hw-hpd;
+};
+
+&mdss_mdp {
+	/delete-property/ connectors;
+	connectors = <&smmu_sde_unsec &smmu_sde_sec &sde_wb &sde_dsi &sde_dp>;
+};

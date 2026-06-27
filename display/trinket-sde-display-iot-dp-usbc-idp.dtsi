@@ -1,0 +1,10 @@
+#include "trinket-sde-display-iot-dp-idp.dtsi"
+
+&sde_dp {
+	status = "disabled";
+};
+
+&mdss_mdp {
+	/delete-property/ connectors;
+	connectors = <&smmu_sde_unsec &smmu_sde_sec &sde_wb &sde_dsi>;
+};
