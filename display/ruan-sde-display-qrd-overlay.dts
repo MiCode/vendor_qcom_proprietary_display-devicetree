@@ -1,0 +1,34 @@
+/dts-v1/;
+/plugin/;
+
+#include "ruan-sde-display-qrd.dtsi"
+
+/{
+	model = "Qualcomm Technologies, Inc. Parrot QRD. RUAN based on SM7435";
+	compatible = "qcom,parrot-qrd", "qcom,parrot", "qcom,qrd";
+	qcom,msm-id = <537 0x10000>, <583 0x10000>, <613 0x10000>, <631 0x10000>, <633 0x10000>, <634 0x10000>, <638 0x10000>;
+	qcom,board-id = <0x3000B 0>, <0x3000B 1>, <0x3000B 0x600>, <0x3000B 0x601>;
+};
+
+&qupv3_se1_i2c{
+        status = "ok";
+        sy7758@2e {
+			compatible = "sy,sy7758";
+			reg = <0x2e>;
+		};
+};
+&qupv3_se4_i2c{
+        status = "ok";
+        sy7758@2e {
+			compatible = "sy,sy7758";
+			reg = <0x2e>;
+        };
+        ocp2131@3e {
+			compatible = "qcom,ocp2131_bias";
+			reg = <0x3e>;
+			bias,lcm-enp-gpio = <&tlmm 105 0>;
+			bias,lcm-enn-gpio = <&tlmm 104 0>;
+			bias,lcm-iovdd-gpio = <&tlmm 6 0>;
+            bias,lcm-cs-gpio = <&tlmm 13 0>;
+        };
+};
