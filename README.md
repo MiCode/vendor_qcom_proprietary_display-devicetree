@@ -28,3 +28,4 @@
 | piano-w-oss | Xiaomi Pad 8 Pro | Android W | LA.VENDOR.15.4.0.r1-15000-r1.0.r1_00044.1 |[piano-w-oss](https://github.com/MiCode/vendor_qcom_proprietary_display-devicetree/tree/piano-w-oss) |
 | guitar-w-oss | REDMI Pad 2 SE | Android W | snapdragon-mid-2022-spf-2-0-2_00004.0 |[guitar-w-oss](https://github.com/MiCode/vendor_qcom_proprietary_display-devicetree/tree/guitar-w-oss) |
 | erhu-w-oss | REDMI Pad 2 SE 4G | Android W | snapdragon-mid-2022-spf-2-0-2_00004.0 |[erhu-w-oss](https://github.com/MiCode/vendor_qcom_proprietary_display-devicetree/tree/erhu-w-oss) |
+| ruan-u-oss | POCO Pad 5G / Redmi Pad Pro 5G | Android U | LA.VENDOR.1.0.r1-23800_r2.0.1.r1_00007.0 |[ruan-u-oss](https://github.com/MiCode/vendor_qcom_proprietary_display-devicetree/tree/ruan-u-oss) |
