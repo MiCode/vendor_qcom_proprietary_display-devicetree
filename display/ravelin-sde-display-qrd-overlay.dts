@@ -1,0 +1,90 @@
+/dts-v1/;
+/plugin/;
+
+#include "ravelin-sde-display-qrd.dtsi"
+#include "dsi-panel-p19-41-02-0b-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19-virtual-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19-38-0e-0a-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19-38-0e-0a-p11-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19-38-0e-0a-p20-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19-38-0e-0a-new-p10-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19-38-0e-0a-new-p11-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19-38-0e-0a-new-p20-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19-38-0e-0a-mp-dsc-vdo-dphy.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Ravelin QRD";
+	compatible = "qcom,ravelin-qrd", "qcom,ravelin", "qcom,qrd";
+	qcom,msm-id = <568 0x10000>, <602 0x10000>,
+			<581 0x10000>, <582 0x10000>,
+			<653 0x10000>, <654 0x10000>;
+	qcom,board-id = <0x1000B 0>, <0x1000B 0x600>;
+};
+
+/*TOUCH start*/
+&soc {
+    xiaomi_touch {
+        status = "okay";
+        compatible = "xiaomi-touch";
+        touch,name = "xiaomi-touch";
+    };
+};
+
+&qupv3_se6_spi {
+        status = "ok";
+        qcom,xfer-timeout-offset = <2500>;
+        touch@0 {
+                compatible = "goodix,gt9916k", "goodix,brl-d", "fts_ts";
+                spi-max-frequency = <9600000>;
+                reg = <0>; //Same as CS ID
+                status = "ok";
+                interrupt-parent = <&tlmm>;
+                interrupts = <13 0x02>;
+                pinctrl-names = "pmx_ts_active","pmx_ts_suspend","pmx_ts_release";
+                pinctrl-0 = <&ts_int_active &ts_reset_active>;
+                pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+                pinctrl-2 = <&ts_release>;
+                /* goodix config */
+                //goodix,avdd-name = "avdd";
+                //avdd-supply = <&L7E>;
+		goodix,avdd-gpio = <&tlmm 58 0x00>;
+                goodix,iovdd-gpio = <&tlmm 59 0x00>;
+                goodix,reset-gpio = <&tlmm 12 0x01>;
+                goodix,irq-gpio = <&tlmm 13 0x02>;
+                goodix,irq-flags = <2>; /* 1:trigger rising, 2:trigger falling;*/
+                goodix,panel-max-x = <17280>;
+                goodix,panel-max-y = <38336>;
+                goodix,panel-max-w = <255>;
+                panel = <&dsi_p19_38_0e_0a_video_dphy &dsi_p19_38_0e_0a_p11_video_dphy &dsi_p19_38_0e_0a_p20_video_dphy &dsi_p19_38_0e_0a_new_p10_video_dphy &dsi_p19_38_0e_0a_new_p11_video_dphy &dsi_p19_38_0e_0a_new_p20_video_dphy &dsi_p19_38_0e_0a_mp_video_dphy>;
+                /* focaltech config */
+                //focaltech,avdd-name = "avdd";
+		focaltech,avdd-gpio = <&tlmm 58 0x00>;
+                focaltech,iovdd-gpio = <&tlmm 59 0x00>;
+                focaltech,reset-gpio = <&tlmm 12 0x01>;
+                focaltech,irq-gpio = <&tlmm 13 0x02>;
+                focaltech,irq-flags = <2>; /* 1:trigger rising, 2:trigger falling;*/
+                focaltech,max-touch-number = <10>;
+                focaltech,display-coords =  <0 0 1079 2395>;
+                /* optional properties */
+                //goodix,panel-max-p = <4096>; /* max pressure that pen device supported */
+                //goodix,pen-enable; /* support active stylus device */
+                goodix,firmware-name = "goodix_firmware.bin";
+                goodix,config-name = "goodix_cfg_group.bin";
+                mi_tp,game-mode-array =
+                                <1 0 0 0 0>;  /* Touch_Game_Mode MAX MIN DEF SET GET */
+                mi_tp,active-mode-array =
+                                <1 0 0 0 0>;  /* Touch_Active_MODE MAX MIN DEF SET GET */
+                mi_tp,up-threshold-array =
+                                <4 0 2 0 0>;  /* Touch_UP_THRESHOLD MAX MIN DEF SET GET */
+                mi_tp,tolerance-array =
+                                <4 0 2 0 0>;  /* Touch_Tolerance MAX MIN DEF SET GET */
+                mi_tp,panel-orien-array =
+                                <3 0 0 0 0>;  /* Touch_Panel_Orientation MAX MIN DEF SET GET */
+                mi_tp,edge-filter-array =
+                                <3 0 2 2 2>;  /* Touch_Edge_Filter MAX MIN DEF SET GET */
+                goodix,3rd-firmware-name = "goodix_3rd_firmware.bin";
+                goodix,3rd-config-name = "goodix_3rd_cfg_group.bin";
+        };
+};
+/*TOUCH end*/
+
