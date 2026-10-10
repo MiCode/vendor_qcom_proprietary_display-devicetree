@@ -1,0 +1,21 @@
+/dts-v1/;
+/plugin/;
+#include "khaje-sde-display-qrd-nopmi.dtsi"
+#include "dsi-panel-p19a-41-02-0b-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19a-virtual-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19a-38-0e-0a-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19a-38-0e-0a-mp-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19a-38-0e-0a-p20-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19a-38-0e-0a-p11-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19a-38-0e-0a-new-p10-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19a-38-0e-0a-new-p11-dsc-vdo-dphy.dtsi"
+#include "dsi-panel-p19a-38-0e-0a-new-p20-dsc-vdo-dphy.dtsi"
+#include "p19a_touchscreen.dtsi"
+
+/ {
+        model = "Qualcomm Technologies, Inc. KHAJE QRD nopmi overlay";
+        compatible = "qcom,khaje-qrd", "qcom,khaje", "qcom,qrd";
+        qcom,msm-id = <518 0x10000>;
+        qcom,board-id = <0x1000B 0>;
+        qcom,pmic-id = <0x2D 0x0 0x0 0x0>;
+};
