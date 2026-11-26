@@ -1,0 +1,200 @@
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+//#include <dt-bindings/clock/qcom,dispcc-seraph.h>
+#include <dt-bindings/clock/qcom,gcc-seraph.h>
+#include <dt-bindings/interconnect/qcom,seraph.h>
+#include <dt-bindings/clock/qcom,rpmh.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include "seraph-sde-common.dtsi"
+#include <dt-bindings/clock/qcom,lsrcc-seraph.h>
+
+
+&soc {
+	smmu_sde_lsr_iommu_region_partition: smmu_sde_lsr_iommu_region_partition {
+		iommu-addresses = <&smmu_sde_unsec 0x0 0x4b000000>,
+				<&smmu_sde_unsec 0xdb000000 0x25000000>,
+				<&lsr_non_secure_cb 0x0 0x4b000000>,
+				<&lsr_non_secure_cb 0xdb000000 0x25000000>,
+				<&smmu_sde_sec 0x0 0x4b000000>,
+				<&smmu_sde_sec 0xdb000000 0x25000000>;
+	};
+
+	non_secure_sde_lsr_cb_group: cvp_non_secure_sde_lsr_cb_group {
+			qcom,iommu-faults = "non-fatal";
+			dma-coherent;
+	};
+
+	smmu_sde_unsec: qcom,smmu_sde_unsec_cb {
+		compatible = "qcom,smmu_sde_unsec";
+		iommus = <&apps_smmu 0x1C00 0x0002>;
+		memory-region = <&smmu_sde_lsr_iommu_region_partition>;
+		qcom,iommu-faults = "non-fatal";
+		qcom,iommu-group = <&non_secure_sde_lsr_cb_group>;
+		qcom,iommu-earlymap; /* for cont-splash */
+		dma-coherent;
+	};
+
+	smmu_sde_sec: qcom,smmu_sde_sec_cb {
+		compatible = "qcom,smmu_sde_sec";
+		iommus = <&apps_smmu 0x1C01 0x0>;
+		memory-region = <&smmu_sde_lsr_iommu_region_partition>;
+		qcom,iommu-faults = "non-fatal";
+		qcom,iommu-vmid = <0xa>;
+	};
+
+	msm_lsr: qcom,lsr@a900000 {
+		compatible = "qcom,msm-lsr", "qcom,seraph-lsr";
+		status = "disabled";
+		reg = <0xa900000 0x100000>;
+		interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>;
+
+		/* LLCC Cache */
+		cache-slice-names = "llcc_gcx_to_dpu_left", "llcc_gcx_to_dpu_right",
+				"llcc_csc_layer0", "llcc_csc_layer1", "llcc_csc_layer2",
+				"llcc_csc_layer3";
+
+		/* Supply */
+		lsr-supply = <&lsr_cc_mvs0c_gdsc>;
+		lsr-noc-supply = <&lsr_cc_lsr_noc_gdsc>;
+		lsr-core-supply = <&lsr_cc_mvs0_gdsc>;
+
+		/* Clocks */
+		clock-names = "lsr_axi_clock", "core_axi_clock", "sleep_clk", "lsr_freerun_clk",
+				"core_freerun_clk", "lsr_clk", "core_clk", "lsr_cc_mvs0_clk_src";
+		clock-ids = <GCC_LSR_AXI_CV_CPU_CLK GCC_LSR_AXI0_CLK LSR_CC_SLEEP_CLK
+				LSR_CC_MVS0C_FREERUN_CLK LSR_CC_MVS0_FREERUN_CLK LSR_CC_MVS0C_CLK
+				LSR_CC_MVS0_CLK LSR_CC_MVS0_CLK_SRC>;
+		clocks = <&gcc GCC_LSR_AXI_CV_CPU_CLK>,
+			<&gcc GCC_LSR_AXI0_CLK>,
+			<&lsrcc LSR_CC_SLEEP_CLK>,
+			<&lsrcc LSR_CC_MVS0C_FREERUN_CLK>,
+			<&lsrcc LSR_CC_MVS0_FREERUN_CLK>,
+			<&lsrcc LSR_CC_MVS0C_CLK>,
+			<&lsrcc LSR_CC_MVS0_CLK>,
+			<&lsrcc LSR_CC_MVS0_CLK_SRC>;
+		qcom,proxy-clock-names = "lsr_axi_clock", "core_axi_clock", "sleep_clk",
+				"lsr_freerun_clk", "core_freerun_clk", "lsr_clk", "core_clk",
+				"lsr_cc_mvs0_clk_src";
+		qcom,clock-configs = <0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x1>;
+		qcom,allowed-clock-rates = <280000000 350000000 450000000 500000000 550000000>;
+		resets = <&lsrcc LSR_CC_MVS0C_CLK_ARES>;
+		reset-names = "lsr_core_reset";
+		reset-power-status = <0x0>;
+
+		qcom,reg-presets = <0xB0088 0x0>;
+		qcom,ipcc-reg = <0x400000 0x200000>;
+		qcom,gcc-reg = <0x110000 0x40000>;
+
+		pas-id = <71>;
+
+		memory-region = <&lsr_mem>;
+
+		/* Memory mappings: start IOVA, size, phys addr */
+		uncached_mapping = <0xFD000000 0x2800000>;
+		device_mapping = <0xFF800000 0x700000>;
+		ipclite_mappings = <0xFE500000 0x200000 0xD7A00000>;
+
+		//Device region mappings
+		aon_timer_mappings = <0xFFA00000 0x1000 0x0c220000>; /* G_RD_CNTR Register blook */
+		hwmutex_mappings = <0xFFB00000 0x2000 0x1f4a000>;
+		/* TCSR_TCSR_MUTEX Register block, includes the registers TCSR_MUTEX_REG 10 & 11 */
+		aon_mappings = <0xFF80F000 0x1000 0x0A9E0000>;
+
+
+		/* LSR Firmware ELF image name */
+		lsr,firmware-name = "lsrss";
+
+		/* Buses */
+		lsr_cnoc {
+			compatible = "qcom,msm-lsr,bus";
+			qcom,bus-governor = "performance";
+			qcom,bus-range-kbps = <1000 1000>;
+			interconnects = <&gem_noc MASTER_APPSS_PROC &cnoc_cfg SLAVE_LSR_CFG>;
+			interconnect-names = "lsr-cfg";
+		};
+
+		lsr_bus_ddr {
+			compatible = "qcom,msm-lsr,bus";
+			qcom,bus-governor = "performance";
+			qcom,bus-range-kbps = <1000 6533000>;
+			interconnects = <&mmss_noc MASTER_LSR_0 &mc_virt SLAVE_EBI1>;
+			interconnect-names = "lsr-ddr";
+		};
+
+		lsr_non_secure_cb: lsr_non_secure_cb {
+			compatible = "qcom,msm-lsr,context-bank";
+			label = "lsr_hlos";
+			iommus = <&apps_smmu 0x520 0x0>, <&apps_smmu 0x2120 0x0>,
+				<&apps_smmu 0x1A80 0x0000>;
+			buffer-types = <0xfff>;
+			dma-coherent;
+			qcom,iommu-group = <&non_secure_sde_lsr_cb_group>;
+			memory-region = <&smmu_sde_lsr_iommu_region_partition>;
+		};
+
+		lsr_hfi_common_cb: lsr_hfi_common_cb {
+			compatible = "qcom,msm-lsr,context-bank";
+			label = "lsr_dcp";
+			iommus = <&apps_smmu 0x19A3 0x0>;
+			buffer-types = <0xfff>;
+			dma-coherent;
+			qcom,iommu-group = <&dcp_cb_group>;
+		};
+	};
+};
+
+&mdss_mdp {
+	/* data and reg bus scale settings */
+	interconnects = <&mmss_noc MASTER_MDP &gem_noc SLAVE_LLCC>,
+			<&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
+			<&gem_noc MASTER_APPSS_PROC &cnoc_main SLAVE_DISPLAY_CFG>;
+	interconnect-names = "qcom,sde-data-bus0",
+			"qcom,sde-ebi-bus", "qcom,sde-reg-bus";
+
+	qcom,sde-ib-bw-vote = <2500000 0 800000>;
+	qcom,sde-has-idle-pc;
+};
+
+&mdss_dsi0 {
+	vdda-1p2-supply = <&L6A>;
+	/*
+	 * clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
+	 *	 <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
+	 *	 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
+	 *	 <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
+	 *	 <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>,
+	 *	 <&dispcc DISP_CC_MDSS_ESC0_CLK>,
+	 *	 <&rpmhcc RPMH_CXO_CLK>;
+	 * clock-names = "byte_clk", "byte_clk_rcg", "byte_intf_clk",
+	 *		"pixel_clk", "pixel_clk_rcg", "esc_clk", "xo";
+	 */
+};
+
+&mdss_dsi1 {
+	vdda-1p2-supply = <&L6A>;
+	/*
+	 * clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
+	 *	 <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>,
+	 *	 <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
+	 *	 <&dispcc DISP_CC_MDSS_PCLK1_CLK>,
+	 *	 <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>,
+	 *	 <&dispcc DISP_CC_MDSS_ESC1_CLK>,
+	 *	 <&rpmhcc RPMH_CXO_CLK>;
+	 * clock-names = "byte_clk", "byte_clk_rcg", "byte_intf_clk",
+	 *		"pixel_clk", "pixel_clk_rcg", "esc_clk", "xo";
+	 */
+};
+
+&mdss_dsi_phy0 {
+	vdda-0p9-supply = <&L9A>;
+};
+
+&mdss_dsi_phy1 {
+	vdda-0p9-supply = <&L9A>;
+};
+
+&reserved_memory {
+	lsr_mem: lsr_region@a2c00000 {
+		no-map;
+		reg = <0x0 0xa2c00000 0x0 0x700000>;
+	};
+};
